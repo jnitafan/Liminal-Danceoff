@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.35378605, g: 0.3925751, b: 0.42390943, a: 1}
+  m_IndirectSpecularColor: {r: 0.3537868, g: 0.39257622, b: 0.42391056, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3525,6 +3525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: yacht
       objectReference: {fileID: 0}
+    - target: {fileID: -4476726250857114931, guid: bf276b337edd1be4997c951ac07e57f9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 56b52f72dd2b30346b340268d86c1f6c, type: 2}
     - target: {fileID: -4216859302048453862, guid: bf276b337edd1be4997c951ac07e57f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3595,22 +3600,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.69764
       objectReference: {fileID: 0}
+    - target: {fileID: 139429749984783154, guid: bf276b337edd1be4997c951ac07e57f9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c8e1ddfe847ed048bf186ab6e35213c, type: 2}
     - target: {fileID: 3049189289381667025, guid: bf276b337edd1be4997c951ac07e57f9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 56b52f72dd2b30346b340268d86c1f6c, type: 2}
     - target: {fileID: 5173757462467271556, guid: bf276b337edd1be4997c951ac07e57f9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 56b52f72dd2b30346b340268d86c1f6c, type: 2}
-    - target: {fileID: 139429749984783154, guid: bf276b337edd1be4997c951ac07e57f9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0c8e1ddfe847ed048bf186ab6e35213c, type: 2}
-    - target: {fileID: -4476726250857114931, guid: bf276b337edd1be4997c951ac07e57f9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7847,6 +7847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968240c9407395f4f9fa7fe28de912a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayNightCycleDuration: 4
 --- !u!4 &707420096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4815343006419104, guid: 8e49073458b157e4c88c829c5a2ea603,
@@ -16658,12 +16659,17 @@ PrefabInstance:
     - target: {fileID: 114051214696948948, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
         type: 3}
       propertyPath: walkSpeed
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114051214696948948, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
         type: 3}
       propertyPath: playerCanMove
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051214696948948, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
+        type: 3}
+      propertyPath: sprintSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 20724644957976244, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
         type: 3}
@@ -17301,6 +17307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968240c9407395f4f9fa7fe28de912a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayNightCycleDuration: 4
 --- !u!1 &1541668699
 GameObject:
   m_ObjectHideFlags: 0
