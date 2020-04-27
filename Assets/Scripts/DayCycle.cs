@@ -15,6 +15,8 @@ public class DayCycle : MonoBehaviour
     {
         transform.RotateAround(Vector3.zero,Vector3.right,8f*Time.deltaTime);
         transform.LookAt(Vector3.zero);
+            
+        //test
         
     }
 }
