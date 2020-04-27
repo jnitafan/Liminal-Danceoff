@@ -2,7 +2,7 @@
 
 Documentation:
 
-##Project Overview
+## Project Overview
 This is a project made for Liminal VR  
 
 Our project is contains a VR program.  
@@ -48,7 +48,7 @@ Time of Day Cycle (?)
 
 
 
-##Team
+## Team
 
 Iman Avazpouris is the supervisor of the squad and here down below are team members.
 Paul Tomiaga 
@@ -60,4 +60,4 @@ Yoshel Nadeeshan
 Wesley Kharposh
 Kavin Dissanayake
 
-##Summary
+## Summary
