@@ -98,7 +98,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 112000000, guid: e952f15c6afae2d46a16b84ba8484108,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2037,9 +2037,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f41510b4ba6f902419a527b755afc648, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 34db58988b59c794ca07a14366ce20e3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.485
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2083,7 +2083,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2620,6 +2620,7 @@ Transform:
   - {fileID: 628468318}
   - {fileID: 1208398546}
   - {fileID: 548527198}
+  - {fileID: 1222004503}
   - {fileID: 1518074475}
   - {fileID: 1593649198}
   - {fileID: 1107325881}
@@ -2643,7 +2644,6 @@ Transform:
   - {fileID: 1575687905}
   - {fileID: 1013459206}
   - {fileID: 779342992}
-  - {fileID: 1222004503}
   - {fileID: 81013056}
   - {fileID: 1130260102}
   - {fileID: 1663257432}
@@ -3996,7 +3996,7 @@ Transform:
   - {fileID: 1280134863}
   - {fileID: 1837364173}
   m_Father: {fileID: 900759189}
-  m_RootOrder: 30
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1280134862
 GameObject:
