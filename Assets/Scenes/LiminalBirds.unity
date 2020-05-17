@@ -253,9 +253,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f41510b4ba6f902419a527b755afc648, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a21ab37b90c0ea247923b93c2f3b1984, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -358,6 +359,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &963194226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8571163829a9a6840ad9c458ad96a81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
+  liftDay:
+    overrideState: 1
+    value: {x: -0.25, y: 0, z: 0.75, w: 0}
+  liftNight:
+    overrideState: 1
+    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+  gammaDay:
+    overrideState: 1
+    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+  gammaNight:
+    overrideState: 1
+    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+  gainDay:
+    overrideState: 1
+    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+  gainNight:
+    overrideState: 1
+    value: {x: 0.25, y: 0, z: -0.75, w: 0}
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -749,7 +781,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0eb80e07a8053494f82093feaddbc51c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

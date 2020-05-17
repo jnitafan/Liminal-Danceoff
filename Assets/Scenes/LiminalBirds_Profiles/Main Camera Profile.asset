@@ -65,10 +65,10 @@ MonoBehaviour:
     value: 15
   saturation:
     overrideState: 1
-    value: 73
+    value: 56
   brightness:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 8
   postExposure:
     overrideState: 0
     value: 0
@@ -104,13 +104,13 @@ MonoBehaviour:
     value: 97
   lift:
     overrideState: 1
-    value: {x: 0.8138702, y: 0.86448723, z: 1, w: 0.033791166}
+    value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
     overrideState: 1
-    value: {x: 1, y: 0.983018, z: 0.77597994, w: 0}
+    value: {x: 1, y: 1, z: 1, w: 0}
   gain:
     overrideState: 1
-    value: {x: 1, y: 0.78173137, z: 0.71462023, w: 0}
+    value: {x: 1, y: 1, z: 1, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1311,6 +1311,32 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
+--- !u!114 &-1011037966627143707
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  spectralLut:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  intensity:
+    overrideState: 1
+    value: 0.05
+  fastMode:
+    overrideState: 1
+    value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,6 +1352,7 @@ MonoBehaviour:
   settings:
   - {fileID: 4016454977470095720}
   - {fileID: -3932041121743125859}
+  - {fileID: -1011037966627143707}
 --- !u!114 &4016454977470095720
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1344,25 +1371,25 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.97
+    value: 0.9
   threshold:
     overrideState: 0
     value: 1
   softKnee:
     overrideState: 1
-    value: 0.736
+    value: 0.521
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
-    overrideState: 1
+    overrideState: 0
     value: 5.59
   anamorphicRatio:
     overrideState: 0
     value: 0
   color:
     overrideState: 1
-    value: {r: 1.3963997, g: 2.3261049, b: 2.3309982, a: 1}
+    value: {r: 0, g: 1.7671595, b: 2.5836017, a: 1}
   fastMode:
     overrideState: 1
     value: 1
