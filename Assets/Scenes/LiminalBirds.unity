@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8571163829a9a6840ad9c458ad96a81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 5
+  cycleTime: 5
   liftDay:
     overrideState: 1
     value: {x: 0.19, y: 0.18, z: 0.12, w: 0}

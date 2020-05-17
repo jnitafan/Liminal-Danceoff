@@ -31,8 +31,6 @@ public class TimeofDayCycle : MonoBehaviour
     [Trackball(TrackballAttribute.Mode.Gain)]
     public Vector4Parameter gainNight;
 
-    Vignette m_Vignette;
-
     void Start()
     {
 
@@ -42,12 +40,7 @@ public class TimeofDayCycle : MonoBehaviour
         m_ColorGrading.gamma.Override(gammaDay);
         m_ColorGrading.gain.Override(gainDay);
 
-        m_Vignette = ScriptableObject.CreateInstance<Vignette>();
-        m_Vignette.enabled.Override(true);
-        m_Vignette.intensity.Override(1f);
-
         m_Volume = PostProcessManager.instance.QuickVolume(gameObject.layer, 100f, m_ColorGrading);
-        m_Volume = PostProcessManager.instance.QuickVolume(gameObject.layer, 100f, m_Vignette);
     }
 
     void Update()
