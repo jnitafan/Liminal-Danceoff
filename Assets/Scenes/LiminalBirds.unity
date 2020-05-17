@@ -371,25 +371,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8571163829a9a6840ad9c458ad96a81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 5
   liftDay:
     overrideState: 1
-    value: {x: -0.25, y: 0, z: 0.75, w: 0}
+    value: {x: 0.19, y: 0.18, z: 0.12, w: 0}
   liftNight:
     overrideState: 1
-    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+    value: {x: -0.25, y: -0.2, z: -0.01, w: 0}
   gammaDay:
     overrideState: 1
-    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+    value: {x: 1.34, y: 1.33, z: 1.24, w: 0}
   gammaNight:
     overrideState: 1
-    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+    value: {x: 0.95, y: 1.49, z: 1.74, w: 0}
   gainDay:
     overrideState: 1
-    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+    value: {x: 1.02, y: 0.99, z: 1.04, w: 0}
   gainNight:
     overrideState: 1
-    value: {x: 0.25, y: 0, z: -0.75, w: 0}
+    value: {x: 0.94, y: 1.01, z: 0.97, w: 0}
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0

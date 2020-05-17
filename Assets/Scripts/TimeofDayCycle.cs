@@ -52,9 +52,9 @@ public class TimeofDayCycle : MonoBehaviour
 
     void Update()
     {
-        m_ColorGrading.lift.value = Vector4.Lerp(liftDay, liftNight, Mathf.Sin(time * Time.realtimeSinceStartup));
-        m_ColorGrading.gamma.value = Vector4.Lerp(gammaDay, gammaNight, Mathf.Sin(time * Time.realtimeSinceStartup));
-        m_ColorGrading.gain.value = Vector4.Lerp(gainDay, gainNight, Mathf.Sin(time * Time.realtimeSinceStartup));
+        m_ColorGrading.lift.value = Vector4.Lerp(liftDay, liftNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
+        m_ColorGrading.gamma.value = Vector4.Lerp(gammaDay, gammaNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
+        m_ColorGrading.gain.value = Vector4.Lerp(gainDay, gainNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
     }
 
     void OnDestroy()
