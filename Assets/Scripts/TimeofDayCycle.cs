@@ -7,7 +7,9 @@ public class TimeofDayCycle : MonoBehaviour
     // Vignette m_Vignette;
     ColorGrading m_ColorGrading;
 
-    public int cycleTime;
+    public float cycleTime;
+
+    public GameObject directionalLight;
 
     [DisplayName("LiftDay")]
     [Trackball(TrackballAttribute.Mode.Lift)]
@@ -20,6 +22,7 @@ public class TimeofDayCycle : MonoBehaviour
     [DisplayName("GammaDay")]
     [Trackball(TrackballAttribute.Mode.Gamma)]
     public Vector4Parameter gammaDay;
+
     [DisplayName("GammaNight")]
     [Trackball(TrackballAttribute.Mode.Gamma)]
     public Vector4Parameter gammaNight;
@@ -27,12 +30,17 @@ public class TimeofDayCycle : MonoBehaviour
     [DisplayName("GainDay")]
     [Trackball(TrackballAttribute.Mode.Gain)]
     public Vector4Parameter gainDay;
-    [DisplayName("GainDay")]
+
+    [DisplayName("GainNight")]
     [Trackball(TrackballAttribute.Mode.Gain)]
     public Vector4Parameter gainNight;
 
+
     void Start()
     {
+        directionalLight.GetComponent<Transform>();
+        directionalLight.transform.rotation = new Quaternion(0, 0, 0, 0);
+
 
         m_ColorGrading = ScriptableObject.CreateInstance<ColorGrading>();
         m_ColorGrading.enabled.Override(true);
@@ -48,6 +56,8 @@ public class TimeofDayCycle : MonoBehaviour
         m_ColorGrading.lift.value = Vector4.Lerp(liftDay, liftNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
         m_ColorGrading.gamma.value = Vector4.Lerp(gammaDay, gammaNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
         m_ColorGrading.gain.value = Vector4.Lerp(gainDay, gainNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
+
+        directionalLight.transform.Rotate(Mathf.Sin(Time.realtimeSinceStartup * cycleTime), 0, 0);
     }
 
     void OnDestroy()
