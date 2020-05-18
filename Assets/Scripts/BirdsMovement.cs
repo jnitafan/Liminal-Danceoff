@@ -26,7 +26,7 @@ public class BirdsMovement : MonoBehaviour
             turnAround();
             time = time + Time.deltaTime;
         }
-        if (time>30)
+        if (time>15)
         {
             time = 0.0f;
         }
@@ -40,8 +40,8 @@ public class BirdsMovement : MonoBehaviour
 
     void turnAround()
     {
-        transform.Translate((flySpeed/2) * Vector3.forward * Time.deltaTime);
-        transform.Rotate(0.0f, 0.01f*flySpeed, 0.0f);
+        transform.Translate((flySpeed*1.5f) * Vector3.forward * Time.deltaTime);
+        transform.Rotate(0.0f, 0.05f*flySpeed, 0.0f);
 
     }
 }
