@@ -7,16 +7,16 @@ Vector1_E567A086("Reflectivity", Float) = 1
 Vector1_221A0FD9("RippleScale", Float) = 1
 Vector1_3E734ED8("RippleSpeed", Float) = 3
 Vector1_30FC0A4B("RippleDensity", Float) = 1
-Vector1_8FDC4159("RippleThickness", Float) = 5
-[HDR]Color_5856042A("RippleColor", Color) = (1.160086,2.122328,0.8273483,0)
-Vector1_33B63372("WaveSpeed", Float) = 0.075
+Vector1_8FDC4159("RippleThickness", Float) = 7
+[HDR]Color_5856042A("RippleColor", Color) = (0.8,0.6705883,0.509804,0)
+Vector1_33B63372("WaveSpeed", Float) = 0.5
 Vector1_252B0398("WaveScale", Float) = 3
 Vector1_6AB2287B("EdgeIntensity", Float) = 0.01
 Vector1_71A8A08B("EdgeDistance", Float) = 50
-Color_C3CD9FB5("EdgeColor", Color) = (0.001824497,0.2352941,0.172549,0)
-Vector1_3AE69E57("FoamIntensity", Float) = 0.1
-Vector1_75680CC1("FoamDistance", Float) = -35
-[NoScaleOffset] Texture2D_460F44C3("FoamTexture", 2D) = "white" {}
+Color_C3CD9FB5("EdgeColor", Color) = (0.1254902,0.1686275,0.1568628,0)
+Vector1_3AE69E57("FoamIntensity", Float) = 0.2
+Vector1_75680CC1("FoamDistance", Float) = 0.5
+Color_1BDC16F1("FoamColor", Color) = (1,0.6810412,0.1745283,0)
 
     }
     SubShader
@@ -93,9 +93,9 @@ Vector1_75680CC1("FoamDistance", Float) = -35
             float4 Color_C3CD9FB5;
             float Vector1_3AE69E57;
             float Vector1_75680CC1;
+            float4 Color_1BDC16F1;
             CBUFFER_END
 
-            TEXTURE2D(Texture2D_460F44C3); SAMPLER(samplerTexture2D_460F44C3); float4 Texture2D_460F44C3_TexelSize;
 
             struct VertexDescriptionInputs
             {
@@ -111,7 +111,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection;
                 float3 WorldSpacePosition;
                 float4 ScreenPosition;
-                half4 uv0;
             };
 
 
@@ -272,10 +271,14 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Out = lerp(Base, Out, Opacity);
             }
 
-            void Unity_Blend_Screen_float3(float3 Base, float3 Blend, out float3 Out, float Opacity)
+            void Unity_OneMinus_float(float In, out float Out)
             {
-                Out = 1.0 - (1.0 - Blend) * (1.0 - Base);
-                Out = lerp(Base, Out, Opacity);
+                Out = 1 - In;
+            }
+
+            void Unity_Add_float(float A, float B, out float Out)
+            {
+                Out = A + B;
             }
 
             struct VertexDescription
@@ -303,7 +306,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_Multiply_float(_Time.y, _Property_5062A5B0_Out_0, _Multiply_8B6F13FF_Out_2);
 
                 float2 _TilingAndOffset_C1E9B602_Out_3;
-                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (0,0), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
+                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (25,25), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
                 float _Property_1713DFB6_Out_0 = Vector1_252B0398;
                 float _GradientNoise_7C6CFF22_Out_2;
                 Unity_GradientNoise_float(_TilingAndOffset_C1E9B602_Out_3, _Property_1713DFB6_Out_0, _GradientNoise_7C6CFF22_Out_2);
@@ -398,13 +401,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_ReplaceColor_float((_Smoothstep_DED61EA3_Out_3.xxx), IsGammaSpace() ? float3(1, 1, 1) : SRGBToLinear(float3(1, 1, 1)), (_Property_205D714F_Out_0.xyz), 1, _ReplaceColor_90B5A94_Out_4, 1);
                 float3 _Blend_5D448735_Out_2;
                 Unity_Blend_Overlay_float3((_Add_D22EED0_Out_2.xyz), _ReplaceColor_90B5A94_Out_4, _Blend_5D448735_Out_2, 1);
-                float2 _TilingAndOffset_604747F9_Out_3;
-                Unity_TilingAndOffset_float(IN.uv0.xy, float2 (5,5), float2 (0,0), _TilingAndOffset_604747F9_Out_3);
-                float4 _SampleTexture2D_D53180C1_RGBA_0 = SAMPLE_TEXTURE2D(Texture2D_460F44C3, samplerTexture2D_460F44C3, _TilingAndOffset_604747F9_Out_3);
-                float _SampleTexture2D_D53180C1_R_4 = _SampleTexture2D_D53180C1_RGBA_0.r;
-                float _SampleTexture2D_D53180C1_G_5 = _SampleTexture2D_D53180C1_RGBA_0.g;
-                float _SampleTexture2D_D53180C1_B_6 = _SampleTexture2D_D53180C1_RGBA_0.b;
-                float _SampleTexture2D_D53180C1_A_7 = _SampleTexture2D_D53180C1_RGBA_0.a;
+                float4 _Property_7185CD0B_Out_0 = Color_1BDC16F1;
                 float _Property_11B3398A_Out_0 = Vector1_75680CC1;
                 float _Subtract_F97CE56A_Out_2;
                 Unity_Subtract_float(_Split_3AA6CCFB_A_4, _Property_11B3398A_Out_0, _Subtract_F97CE56A_Out_2);
@@ -417,17 +414,21 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float _Smoothstep_1F3E3AB3_Out_3;
                 Unity_Smoothstep_float(0, 1, _Multiply_37E15C12_Out_2, _Smoothstep_1F3E3AB3_Out_3);
                 float4 _Lerp_A4227D21_Out_3;
-                Unity_Lerp_float4(_SampleTexture2D_D53180C1_RGBA_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
-                float3 _Blend_5EA63E5A_Out_2;
-                Unity_Blend_Screen_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Blend_5EA63E5A_Out_2, 0.5);
+                Unity_Lerp_float4(_Property_7185CD0B_Out_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
+                float3 _Add_C9BAA7D6_Out_2;
+                Unity_Add_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Add_C9BAA7D6_Out_2);
                 float _Property_888F2FB1_Out_0 = Vector1_E567A086;
-                surface.Albedo = _Blend_5EA63E5A_Out_2;
+                float _OneMinus_E4C6FA2D_Out_1;
+                Unity_OneMinus_float(_Smoothstep_1F3E3AB3_Out_3, _OneMinus_E4C6FA2D_Out_1);
+                float _Add_5632F043_Out_2;
+                Unity_Add_float(_Smoothstep_DED61EA3_Out_3, _OneMinus_E4C6FA2D_Out_1, _Add_5632F043_Out_2);
+                surface.Albedo = _Add_C9BAA7D6_Out_2;
                 surface.Normal = IN.TangentSpaceNormal;
                 surface.Emission = IsGammaSpace() ? float3(0, 0, 0) : SRGBToLinear(float3(0, 0, 0));
                 surface.Metallic = 0.3;
                 surface.Smoothness = _Property_888F2FB1_Out_0;
                 surface.Occlusion = 1;
-                surface.Alpha = _Smoothstep_DED61EA3_Out_3;
+                surface.Alpha = _Add_5632F043_Out_2;
                 surface.AlphaClipThreshold = 0.5;
                 return surface;
             }
@@ -437,7 +438,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
-                float4 texcoord0 : TEXCOORD0;
                 float4 texcoord1 : TEXCOORD1;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
@@ -457,8 +457,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent : TEXCOORD6;
                 float3 WorldSpaceViewDirection : TEXCOORD7;
                 float4 ScreenPosition : TEXCOORD8;
-                half4 uv0 : TEXCOORD9;
-                half4 uv1 : TEXCOORD10;
+                half4 uv1 : TEXCOORD9;
 
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             	UNITY_VERTEX_OUTPUT_STEREO
@@ -478,7 +477,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent = cross(WorldSpaceNormal, WorldSpaceTangent.xyz) * v.tangent.w;
                 float3 WorldSpaceViewDirection = _WorldSpaceCameraPos.xyz - mul(GetObjectToWorldMatrix(), float4(v.vertex.xyz, 1.0)).xyz;
                 float4 ScreenPosition = ComputeScreenPos(mul(GetWorldToHClipMatrix(), mul(GetObjectToWorldMatrix(), v.vertex)), _ProjectionParams.x);
-                float4 uv0 = v.texcoord0;
                 float4 uv1 = v.texcoord1;
                 float3 ObjectSpacePosition = mul(UNITY_MATRIX_I_M,float4(WorldSpacePosition,1.0)).xyz;
 
@@ -501,7 +499,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 o.WorldSpaceBiTangent = WorldSpaceBiTangent;
                 o.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 o.ScreenPosition = ScreenPosition;
-                o.uv0 = uv0;
                 o.uv1 = uv1;
 
         		float3 lwWNormal = TransformObjectToWorldNormal(v.normal);
@@ -539,7 +536,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection = IN.WorldSpaceViewDirection;
                 float3x3 tangentSpaceTransform = float3x3(WorldSpaceTangent,WorldSpaceBiTangent,WorldSpaceNormal);
                 float4 ScreenPosition = IN.ScreenPosition;
-                float4 uv0 = IN.uv0;
                 float4 uv1 = IN.uv1;
                 float3 TangentSpaceNormal = mul(WorldSpaceNormal,(float3x3)tangentSpaceTransform).xyz;
 
@@ -551,7 +547,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 surfaceInput.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 surfaceInput.WorldSpacePosition = WorldSpacePosition;
                 surfaceInput.ScreenPosition = ScreenPosition;
-                surfaceInput.uv0 = uv0;
 
                 SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
@@ -668,9 +663,9 @@ Vector1_75680CC1("FoamDistance", Float) = -35
             float4 Color_C3CD9FB5;
             float Vector1_3AE69E57;
             float Vector1_75680CC1;
+            float4 Color_1BDC16F1;
             CBUFFER_END
 
-            TEXTURE2D(Texture2D_460F44C3); SAMPLER(samplerTexture2D_460F44C3); float4 Texture2D_460F44C3_TexelSize;
 
             struct VertexDescriptionInputs
             {
@@ -686,7 +681,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection;
                 float3 WorldSpacePosition;
                 float4 ScreenPosition;
-                half4 uv0;
             };
 
 
@@ -847,10 +841,14 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Out = lerp(Base, Out, Opacity);
             }
 
-            void Unity_Blend_Screen_float3(float3 Base, float3 Blend, out float3 Out, float Opacity)
+            void Unity_OneMinus_float(float In, out float Out)
             {
-                Out = 1.0 - (1.0 - Blend) * (1.0 - Base);
-                Out = lerp(Base, Out, Opacity);
+                Out = 1 - In;
+            }
+
+            void Unity_Add_float(float A, float B, out float Out)
+            {
+                Out = A + B;
             }
 
             struct VertexDescription
@@ -878,7 +876,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_Multiply_float(_Time.y, _Property_5062A5B0_Out_0, _Multiply_8B6F13FF_Out_2);
 
                 float2 _TilingAndOffset_C1E9B602_Out_3;
-                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (0,0), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
+                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (25,25), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
                 float _Property_1713DFB6_Out_0 = Vector1_252B0398;
                 float _GradientNoise_7C6CFF22_Out_2;
                 Unity_GradientNoise_float(_TilingAndOffset_C1E9B602_Out_3, _Property_1713DFB6_Out_0, _GradientNoise_7C6CFF22_Out_2);
@@ -969,13 +967,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_ReplaceColor_float((_Smoothstep_DED61EA3_Out_3.xxx), IsGammaSpace() ? float3(1, 1, 1) : SRGBToLinear(float3(1, 1, 1)), (_Property_205D714F_Out_0.xyz), 1, _ReplaceColor_90B5A94_Out_4, 1);
                 float3 _Blend_5D448735_Out_2;
                 Unity_Blend_Overlay_float3((_Add_D22EED0_Out_2.xyz), _ReplaceColor_90B5A94_Out_4, _Blend_5D448735_Out_2, 1);
-                float2 _TilingAndOffset_604747F9_Out_3;
-                Unity_TilingAndOffset_float(IN.uv0.xy, float2 (5,5), float2 (0,0), _TilingAndOffset_604747F9_Out_3);
-                float4 _SampleTexture2D_D53180C1_RGBA_0 = SAMPLE_TEXTURE2D(Texture2D_460F44C3, samplerTexture2D_460F44C3, _TilingAndOffset_604747F9_Out_3);
-                float _SampleTexture2D_D53180C1_R_4 = _SampleTexture2D_D53180C1_RGBA_0.r;
-                float _SampleTexture2D_D53180C1_G_5 = _SampleTexture2D_D53180C1_RGBA_0.g;
-                float _SampleTexture2D_D53180C1_B_6 = _SampleTexture2D_D53180C1_RGBA_0.b;
-                float _SampleTexture2D_D53180C1_A_7 = _SampleTexture2D_D53180C1_RGBA_0.a;
+                float4 _Property_7185CD0B_Out_0 = Color_1BDC16F1;
                 float _Property_11B3398A_Out_0 = Vector1_75680CC1;
                 float _Subtract_F97CE56A_Out_2;
                 Unity_Subtract_float(_Split_3AA6CCFB_A_4, _Property_11B3398A_Out_0, _Subtract_F97CE56A_Out_2);
@@ -988,12 +980,16 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float _Smoothstep_1F3E3AB3_Out_3;
                 Unity_Smoothstep_float(0, 1, _Multiply_37E15C12_Out_2, _Smoothstep_1F3E3AB3_Out_3);
                 float4 _Lerp_A4227D21_Out_3;
-                Unity_Lerp_float4(_SampleTexture2D_D53180C1_RGBA_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
-                float3 _Blend_5EA63E5A_Out_2;
-                Unity_Blend_Screen_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Blend_5EA63E5A_Out_2, 0.5);
-                surface.Albedo = _Blend_5EA63E5A_Out_2;
+                Unity_Lerp_float4(_Property_7185CD0B_Out_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
+                float3 _Add_C9BAA7D6_Out_2;
+                Unity_Add_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Add_C9BAA7D6_Out_2);
+                float _OneMinus_E4C6FA2D_Out_1;
+                Unity_OneMinus_float(_Smoothstep_1F3E3AB3_Out_3, _OneMinus_E4C6FA2D_Out_1);
+                float _Add_5632F043_Out_2;
+                Unity_Add_float(_Smoothstep_DED61EA3_Out_3, _OneMinus_E4C6FA2D_Out_1, _Add_5632F043_Out_2);
+                surface.Albedo = _Add_C9BAA7D6_Out_2;
                 surface.Emission = IsGammaSpace() ? float3(0, 0, 0) : SRGBToLinear(float3(0, 0, 0));
-                surface.Alpha = _Smoothstep_DED61EA3_Out_3;
+                surface.Alpha = _Add_5632F043_Out_2;
                 surface.AlphaClipThreshold = 0.5;
                 return surface;
             }
@@ -1003,7 +999,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
-                float4 texcoord0 : TEXCOORD0;
                 float4 texcoord1 : TEXCOORD1;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
@@ -1020,8 +1015,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent : TEXCOORD6;
                 float3 WorldSpaceViewDirection : TEXCOORD7;
                 float4 ScreenPosition : TEXCOORD8;
-                half4 uv0 : TEXCOORD9;
-                half4 uv1 : TEXCOORD10;
+                half4 uv1 : TEXCOORD9;
 
                 UNITY_VERTEX_INPUT_INSTANCE_ID
         	};
@@ -1041,7 +1035,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent = cross(WorldSpaceNormal, WorldSpaceTangent.xyz) * v.tangent.w;
                 float3 WorldSpaceViewDirection = _WorldSpaceCameraPos.xyz - mul(GetObjectToWorldMatrix(), float4(v.vertex.xyz, 1.0)).xyz;
                 float4 ScreenPosition = ComputeScreenPos(mul(GetWorldToHClipMatrix(), mul(GetObjectToWorldMatrix(), v.vertex)), _ProjectionParams.x);
-                float4 uv0 = v.texcoord0;
                 float4 uv1 = v.texcoord1;
                 float3 ObjectSpacePosition = mul(UNITY_MATRIX_I_M,float4(WorldSpacePosition,1.0)).xyz;
 
@@ -1064,7 +1057,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 o.WorldSpaceBiTangent = WorldSpaceBiTangent;
                 o.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 o.ScreenPosition = ScreenPosition;
-                o.uv0 = uv0;
                 o.uv1 = uv1;
 
         	    
@@ -1095,7 +1087,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection = IN.WorldSpaceViewDirection;
                 float3x3 tangentSpaceTransform = float3x3(WorldSpaceTangent,WorldSpaceBiTangent,WorldSpaceNormal);
                 float4 ScreenPosition = IN.ScreenPosition;
-                float4 uv0 = IN.uv0;
                 float4 uv1 = IN.uv1;
                 float3 TangentSpaceNormal = mul(WorldSpaceNormal,(float3x3)tangentSpaceTransform).xyz;
 
@@ -1107,7 +1098,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 surfaceInput.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 surfaceInput.WorldSpacePosition = WorldSpacePosition;
                 surfaceInput.ScreenPosition = ScreenPosition;
-                surfaceInput.uv0 = uv0;
 
                 SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
@@ -1178,9 +1168,9 @@ Vector1_75680CC1("FoamDistance", Float) = -35
             float4 Color_C3CD9FB5;
             float Vector1_3AE69E57;
             float Vector1_75680CC1;
+            float4 Color_1BDC16F1;
             CBUFFER_END
 
-            TEXTURE2D(Texture2D_460F44C3); SAMPLER(samplerTexture2D_460F44C3); float4 Texture2D_460F44C3_TexelSize;
 
             struct VertexDescriptionInputs
             {
@@ -1196,7 +1186,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection;
                 float3 WorldSpacePosition;
                 float4 ScreenPosition;
-                half4 uv0;
             };
 
 
@@ -1357,10 +1346,14 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Out = lerp(Base, Out, Opacity);
             }
 
-            void Unity_Blend_Screen_float3(float3 Base, float3 Blend, out float3 Out, float Opacity)
+            void Unity_OneMinus_float(float In, out float Out)
             {
-                Out = 1.0 - (1.0 - Blend) * (1.0 - Base);
-                Out = lerp(Base, Out, Opacity);
+                Out = 1 - In;
+            }
+
+            void Unity_Add_float(float A, float B, out float Out)
+            {
+                Out = A + B;
             }
 
             struct VertexDescription
@@ -1388,7 +1381,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_Multiply_float(_Time.y, _Property_5062A5B0_Out_0, _Multiply_8B6F13FF_Out_2);
 
                 float2 _TilingAndOffset_C1E9B602_Out_3;
-                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (0,0), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
+                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (25,25), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
                 float _Property_1713DFB6_Out_0 = Vector1_252B0398;
                 float _GradientNoise_7C6CFF22_Out_2;
                 Unity_GradientNoise_float(_TilingAndOffset_C1E9B602_Out_3, _Property_1713DFB6_Out_0, _GradientNoise_7C6CFF22_Out_2);
@@ -1479,13 +1472,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_ReplaceColor_float((_Smoothstep_DED61EA3_Out_3.xxx), IsGammaSpace() ? float3(1, 1, 1) : SRGBToLinear(float3(1, 1, 1)), (_Property_205D714F_Out_0.xyz), 1, _ReplaceColor_90B5A94_Out_4, 1);
                 float3 _Blend_5D448735_Out_2;
                 Unity_Blend_Overlay_float3((_Add_D22EED0_Out_2.xyz), _ReplaceColor_90B5A94_Out_4, _Blend_5D448735_Out_2, 1);
-                float2 _TilingAndOffset_604747F9_Out_3;
-                Unity_TilingAndOffset_float(IN.uv0.xy, float2 (5,5), float2 (0,0), _TilingAndOffset_604747F9_Out_3);
-                float4 _SampleTexture2D_D53180C1_RGBA_0 = SAMPLE_TEXTURE2D(Texture2D_460F44C3, samplerTexture2D_460F44C3, _TilingAndOffset_604747F9_Out_3);
-                float _SampleTexture2D_D53180C1_R_4 = _SampleTexture2D_D53180C1_RGBA_0.r;
-                float _SampleTexture2D_D53180C1_G_5 = _SampleTexture2D_D53180C1_RGBA_0.g;
-                float _SampleTexture2D_D53180C1_B_6 = _SampleTexture2D_D53180C1_RGBA_0.b;
-                float _SampleTexture2D_D53180C1_A_7 = _SampleTexture2D_D53180C1_RGBA_0.a;
+                float4 _Property_7185CD0B_Out_0 = Color_1BDC16F1;
                 float _Property_11B3398A_Out_0 = Vector1_75680CC1;
                 float _Subtract_F97CE56A_Out_2;
                 Unity_Subtract_float(_Split_3AA6CCFB_A_4, _Property_11B3398A_Out_0, _Subtract_F97CE56A_Out_2);
@@ -1498,12 +1485,16 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float _Smoothstep_1F3E3AB3_Out_3;
                 Unity_Smoothstep_float(0, 1, _Multiply_37E15C12_Out_2, _Smoothstep_1F3E3AB3_Out_3);
                 float4 _Lerp_A4227D21_Out_3;
-                Unity_Lerp_float4(_SampleTexture2D_D53180C1_RGBA_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
-                float3 _Blend_5EA63E5A_Out_2;
-                Unity_Blend_Screen_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Blend_5EA63E5A_Out_2, 0.5);
-                surface.Albedo = _Blend_5EA63E5A_Out_2;
+                Unity_Lerp_float4(_Property_7185CD0B_Out_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
+                float3 _Add_C9BAA7D6_Out_2;
+                Unity_Add_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Add_C9BAA7D6_Out_2);
+                float _OneMinus_E4C6FA2D_Out_1;
+                Unity_OneMinus_float(_Smoothstep_1F3E3AB3_Out_3, _OneMinus_E4C6FA2D_Out_1);
+                float _Add_5632F043_Out_2;
+                Unity_Add_float(_Smoothstep_DED61EA3_Out_3, _OneMinus_E4C6FA2D_Out_1, _Add_5632F043_Out_2);
+                surface.Albedo = _Add_C9BAA7D6_Out_2;
                 surface.Emission = IsGammaSpace() ? float3(0, 0, 0) : SRGBToLinear(float3(0, 0, 0));
-                surface.Alpha = _Smoothstep_DED61EA3_Out_3;
+                surface.Alpha = _Add_5632F043_Out_2;
                 surface.AlphaClipThreshold = 0.5;
                 return surface;
             }
@@ -1513,7 +1504,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
-                float4 texcoord0 : TEXCOORD0;
                 float4 texcoord1 : TEXCOORD1;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
@@ -1530,8 +1520,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent : TEXCOORD6;
                 float3 WorldSpaceViewDirection : TEXCOORD7;
                 float4 ScreenPosition : TEXCOORD8;
-                half4 uv0 : TEXCOORD9;
-                half4 uv1 : TEXCOORD10;
+                half4 uv1 : TEXCOORD9;
 
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -1551,7 +1540,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent = cross(WorldSpaceNormal, WorldSpaceTangent.xyz) * v.tangent.w;
                 float3 WorldSpaceViewDirection = _WorldSpaceCameraPos.xyz - mul(GetObjectToWorldMatrix(), float4(v.vertex.xyz, 1.0)).xyz;
                 float4 ScreenPosition = ComputeScreenPos(mul(GetWorldToHClipMatrix(), mul(GetObjectToWorldMatrix(), v.vertex)), _ProjectionParams.x);
-                float4 uv0 = v.texcoord0;
                 float4 uv1 = v.texcoord1;
                 float3 ObjectSpacePosition = mul(UNITY_MATRIX_I_M,float4(WorldSpacePosition,1.0)).xyz;
 
@@ -1574,7 +1562,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 o.WorldSpaceBiTangent = WorldSpaceBiTangent;
                 o.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 o.ScreenPosition = ScreenPosition;
-                o.uv0 = uv0;
                 o.uv1 = uv1;
 
         	    o.clipPos = TransformObjectToHClip(v.vertex.xyz);
@@ -1594,7 +1581,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection = IN.WorldSpaceViewDirection;
                 float3x3 tangentSpaceTransform = float3x3(WorldSpaceTangent,WorldSpaceBiTangent,WorldSpaceNormal);
                 float4 ScreenPosition = IN.ScreenPosition;
-                float4 uv0 = IN.uv0;
                 float4 uv1 = IN.uv1;
                 float3 TangentSpaceNormal = mul(WorldSpaceNormal,(float3x3)tangentSpaceTransform).xyz;
 
@@ -1606,7 +1592,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 surfaceInput.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 surfaceInput.WorldSpacePosition = WorldSpacePosition;
                 surfaceInput.ScreenPosition = ScreenPosition;
-                surfaceInput.uv0 = uv0;
 
                 SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
@@ -1673,9 +1658,9 @@ Vector1_75680CC1("FoamDistance", Float) = -35
             float4 Color_C3CD9FB5;
             float Vector1_3AE69E57;
             float Vector1_75680CC1;
+            float4 Color_1BDC16F1;
             CBUFFER_END
 
-            TEXTURE2D(Texture2D_460F44C3); SAMPLER(samplerTexture2D_460F44C3); float4 Texture2D_460F44C3_TexelSize;
 
             struct VertexDescriptionInputs
             {
@@ -1691,7 +1676,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection;
                 float3 WorldSpacePosition;
                 float4 ScreenPosition;
-                half4 uv0;
             };
 
 
@@ -1852,10 +1836,14 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Out = lerp(Base, Out, Opacity);
             }
 
-            void Unity_Blend_Screen_float3(float3 Base, float3 Blend, out float3 Out, float Opacity)
+            void Unity_OneMinus_float(float In, out float Out)
             {
-                Out = 1.0 - (1.0 - Blend) * (1.0 - Base);
-                Out = lerp(Base, Out, Opacity);
+                Out = 1 - In;
+            }
+
+            void Unity_Add_float(float A, float B, out float Out)
+            {
+                Out = A + B;
             }
 
             struct VertexDescription
@@ -1883,7 +1871,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_Multiply_float(_Time.y, _Property_5062A5B0_Out_0, _Multiply_8B6F13FF_Out_2);
 
                 float2 _TilingAndOffset_C1E9B602_Out_3;
-                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (0,0), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
+                Unity_TilingAndOffset_float(_Multiply_9915511D_Out_2, float2 (25,25), (_Multiply_8B6F13FF_Out_2.xx), _TilingAndOffset_C1E9B602_Out_3);
                 float _Property_1713DFB6_Out_0 = Vector1_252B0398;
                 float _GradientNoise_7C6CFF22_Out_2;
                 Unity_GradientNoise_float(_TilingAndOffset_C1E9B602_Out_3, _Property_1713DFB6_Out_0, _GradientNoise_7C6CFF22_Out_2);
@@ -1974,13 +1962,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 Unity_ReplaceColor_float((_Smoothstep_DED61EA3_Out_3.xxx), IsGammaSpace() ? float3(1, 1, 1) : SRGBToLinear(float3(1, 1, 1)), (_Property_205D714F_Out_0.xyz), 1, _ReplaceColor_90B5A94_Out_4, 1);
                 float3 _Blend_5D448735_Out_2;
                 Unity_Blend_Overlay_float3((_Add_D22EED0_Out_2.xyz), _ReplaceColor_90B5A94_Out_4, _Blend_5D448735_Out_2, 1);
-                float2 _TilingAndOffset_604747F9_Out_3;
-                Unity_TilingAndOffset_float(IN.uv0.xy, float2 (5,5), float2 (0,0), _TilingAndOffset_604747F9_Out_3);
-                float4 _SampleTexture2D_D53180C1_RGBA_0 = SAMPLE_TEXTURE2D(Texture2D_460F44C3, samplerTexture2D_460F44C3, _TilingAndOffset_604747F9_Out_3);
-                float _SampleTexture2D_D53180C1_R_4 = _SampleTexture2D_D53180C1_RGBA_0.r;
-                float _SampleTexture2D_D53180C1_G_5 = _SampleTexture2D_D53180C1_RGBA_0.g;
-                float _SampleTexture2D_D53180C1_B_6 = _SampleTexture2D_D53180C1_RGBA_0.b;
-                float _SampleTexture2D_D53180C1_A_7 = _SampleTexture2D_D53180C1_RGBA_0.a;
+                float4 _Property_7185CD0B_Out_0 = Color_1BDC16F1;
                 float _Property_11B3398A_Out_0 = Vector1_75680CC1;
                 float _Subtract_F97CE56A_Out_2;
                 Unity_Subtract_float(_Split_3AA6CCFB_A_4, _Property_11B3398A_Out_0, _Subtract_F97CE56A_Out_2);
@@ -1993,12 +1975,16 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float _Smoothstep_1F3E3AB3_Out_3;
                 Unity_Smoothstep_float(0, 1, _Multiply_37E15C12_Out_2, _Smoothstep_1F3E3AB3_Out_3);
                 float4 _Lerp_A4227D21_Out_3;
-                Unity_Lerp_float4(_SampleTexture2D_D53180C1_RGBA_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
-                float3 _Blend_5EA63E5A_Out_2;
-                Unity_Blend_Screen_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Blend_5EA63E5A_Out_2, 0.5);
-                surface.Albedo = _Blend_5EA63E5A_Out_2;
+                Unity_Lerp_float4(_Property_7185CD0B_Out_0, float4(0, 0, 0, 0), (_Smoothstep_1F3E3AB3_Out_3.xxxx), _Lerp_A4227D21_Out_3);
+                float3 _Add_C9BAA7D6_Out_2;
+                Unity_Add_float3(_Blend_5D448735_Out_2, (_Lerp_A4227D21_Out_3.xyz), _Add_C9BAA7D6_Out_2);
+                float _OneMinus_E4C6FA2D_Out_1;
+                Unity_OneMinus_float(_Smoothstep_1F3E3AB3_Out_3, _OneMinus_E4C6FA2D_Out_1);
+                float _Add_5632F043_Out_2;
+                Unity_Add_float(_Smoothstep_DED61EA3_Out_3, _OneMinus_E4C6FA2D_Out_1, _Add_5632F043_Out_2);
+                surface.Albedo = _Add_C9BAA7D6_Out_2;
                 surface.Emission = IsGammaSpace() ? float3(0, 0, 0) : SRGBToLinear(float3(0, 0, 0));
-                surface.Alpha = _Smoothstep_DED61EA3_Out_3;
+                surface.Alpha = _Add_5632F043_Out_2;
                 surface.AlphaClipThreshold = 0.5;
                 return surface;
             }
@@ -2008,7 +1994,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
-                float4 texcoord0 : TEXCOORD0;
                 float4 texcoord1 : TEXCOORD1;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
@@ -2025,8 +2010,7 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent : TEXCOORD6;
                 float3 WorldSpaceViewDirection : TEXCOORD7;
                 float4 ScreenPosition : TEXCOORD8;
-                half4 uv0 : TEXCOORD9;
-                half4 uv1 : TEXCOORD10;
+                half4 uv1 : TEXCOORD9;
 
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -2046,7 +2030,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceBiTangent = cross(WorldSpaceNormal, WorldSpaceTangent.xyz) * v.tangent.w;
                 float3 WorldSpaceViewDirection = _WorldSpaceCameraPos.xyz - mul(GetObjectToWorldMatrix(), float4(v.vertex.xyz, 1.0)).xyz;
                 float4 ScreenPosition = ComputeScreenPos(mul(GetWorldToHClipMatrix(), mul(GetObjectToWorldMatrix(), v.vertex)), _ProjectionParams.x);
-                float4 uv0 = v.texcoord0;
                 float4 uv1 = v.texcoord1;
                 float3 ObjectSpacePosition = mul(UNITY_MATRIX_I_M,float4(WorldSpacePosition,1.0)).xyz;
 
@@ -2058,7 +2041,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 o.WorldSpaceBiTangent = WorldSpaceBiTangent;
                 o.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 o.ScreenPosition = ScreenPosition;
-                o.uv0 = uv0;
                 o.uv1 = uv1;
 
                 o.clipPos = MetaVertexPosition(v.vertex, uv1, uv1, unity_LightmapST, unity_DynamicLightmapST);
@@ -2078,7 +2060,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 float3 WorldSpaceViewDirection = IN.WorldSpaceViewDirection;
                 float3x3 tangentSpaceTransform = float3x3(WorldSpaceTangent,WorldSpaceBiTangent,WorldSpaceNormal);
                 float4 ScreenPosition = IN.ScreenPosition;
-                float4 uv0 = IN.uv0;
                 float4 uv1 = IN.uv1;
                 float3 TangentSpaceNormal = mul(WorldSpaceNormal,(float3x3)tangentSpaceTransform).xyz;
 
@@ -2090,7 +2071,6 @@ Vector1_75680CC1("FoamDistance", Float) = -35
                 surfaceInput.WorldSpaceViewDirection = WorldSpaceViewDirection;
                 surfaceInput.WorldSpacePosition = WorldSpacePosition;
                 surfaceInput.ScreenPosition = ScreenPosition;
-                surfaceInput.uv0 = uv0;
 
                 SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
