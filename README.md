@@ -8,14 +8,14 @@ This is a project made for Liminal VR
 Our project is contains a VR program.  
 It is a creative concept of virtual relaxation.
 We are called as Liminal VR and have specific tasks and deliverable.
-​--Examine the relationship between our Serene Beach Project with user's relaxation​--
+​-- Examine the relationship between our Serene Beach Project with user's relaxation​--
 
----Main components of this project---
+--- Main components of this project ---
 Visual Assets​
 Unity Scripting ​
 Audio Assets ​
 
----Technologies & Software---
+--- Technologies & Software ---
 Unity ​
 Audacity ​
 FL Studio ​
@@ -24,13 +24,13 @@ Autodesk 3DS Max​
 
 ​The original sprint (iteration) backlog ​
 
----Audio---
+--- Audio ---
 Sound Effects ​
 Compiling Audio ​
 Background Music ​
 Polished Previous Asset (?) ​
 
----Visual---​
+--- Visual ---​
 Palm Trees ​
 Rocks ​
 Beach Hut (?) ​
@@ -38,7 +38,7 @@ Water Shader ​
 Textured all visual assets ​
 Cloud Shader (?) ​
 
----Unity Scripting--- 
+--- Unity Scripting --- 
 Movement Interpolation for Boids​
 Basic Controller Input ​
 Time of Day Cycle (?)
