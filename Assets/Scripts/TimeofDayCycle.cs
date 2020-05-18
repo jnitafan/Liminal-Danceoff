@@ -7,7 +7,8 @@ public class TimeofDayCycle : MonoBehaviour
     // Vignette m_Vignette;
     ColorGrading m_ColorGrading;
 
-    public float cycleTime;
+    private float cycleTime = 0;
+    public float timeSpeedMultiplier;
 
     public GameObject directionalLight;
 
@@ -53,11 +54,20 @@ public class TimeofDayCycle : MonoBehaviour
 
     void Update()
     {
-        m_ColorGrading.lift.value = Vector4.Lerp(liftDay, liftNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
-        m_ColorGrading.gamma.value = Vector4.Lerp(gammaDay, gammaNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
-        m_ColorGrading.gain.value = Vector4.Lerp(gainDay, gainNight, Mathf.Sin(cycleTime * Time.realtimeSinceStartup));
+        cycleTime = cycleTime + Time.deltaTime;
 
-        directionalLight.transform.Rotate(Mathf.Sin(Time.realtimeSinceStartup * cycleTime), 0, 0);
+        float timeChange = Mathf.Sin(cycleTime * timeSpeedMultiplier);
+        float normalizedFloat;
+
+        normalizedFloat = (timeChange - (-1)) / (1 - (-1));
+        timeChange = Mathf.Clamp(timeChange, -1, 1);
+        normalizedFloat = Mathf.Clamp(normalizedFloat, 0, 1);
+
+        m_ColorGrading.lift.value = Vector4.Lerp(liftDay, liftNight, normalizedFloat);
+        m_ColorGrading.gamma.value = Vector4.Lerp(gammaDay, gammaNight, normalizedFloat);
+        m_ColorGrading.gain.value = Vector4.Lerp(gainDay, gainNight, normalizedFloat);
+
+        directionalLight.transform.Rotate(normalizedFloat, 0, 0);
     }
 
     void OnDestroy()
