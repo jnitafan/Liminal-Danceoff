@@ -31,7 +31,6 @@ public class TimeCycleScript : MonoBehaviour
     public GameObject StarsViolet;
     private ParticleSystem StarsVioletParticle;
     public float cloudAlpha = 0.0f;
-    public float starsAlpha = 0.0f;
     public GameObject AudioController;
     private AudioSource nightSfx;
 
@@ -47,6 +46,8 @@ public class TimeCycleScript : MonoBehaviour
         StarsVioletParticle = StarsViolet.GetComponent<ParticleSystem>();
         nightSfx = AudioController.GetComponent<AudioSource>();
 
+        CloudRenderer_low.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
+        CloudRenderer_high.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
     }
 
     private void Update()
@@ -75,7 +76,7 @@ public class TimeCycleScript : MonoBehaviour
             StarsWhiteParticle.Play();
             StarsBlueParticle.Play();
             StarsVioletParticle.Play();
-            nightSfx.volume = 0.1f;
+            nightSfx.volume = 0.05f;
         }
         // print(TimeOfDay / 24f);
 

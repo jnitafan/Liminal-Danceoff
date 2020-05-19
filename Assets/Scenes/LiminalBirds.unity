@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.986867, g: 0.71120334, b: 0.49400872, a: 1}
+  m_FogColor: {r: 0.99901134, g: 0.97826004, b: 0.96191007, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 0.82140356, b: 0.6961173, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 0.9671352, b: 0.94408035, a: 1}
   m_AmbientEquatorColor: {r: 0.40730688, g: 0.6214133, b: 0.764151, a: 1}
   m_AmbientGroundColor: {r: 1, g: 0.76618034, b: 0.3066038, a: 1}
   m_AmbientIntensity: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.5412604, g: 0.6249939, b: 0.6711268, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -654,7 +654,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.6821097, g: 0.6821097, b: 0.6821097, a: 1}
+  m_Color: {r: 0.9969294, g: 0.9969294, b: 0.9969294, a: 1}
   m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
@@ -700,7 +700,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
+  m_BoundingSphereOverride: {x: 4.5918e-41, y: 0, z: 0, w: 4.59179e-40}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -711,7 +711,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.08474768, y: 0.2325571, z: -0.9686698, w: 0.020346124}
+  m_LocalRotation: {x: 0.0662738, y: 0.64697665, z: -0.75751245, w: 0.05660316}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1036,8 +1036,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -5830,14 +5830,14 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  TimeOfDay: 16.2
+  TimeOfDay: 12.6
   windSpeed: 0
   cloudVisiblityCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 1.5248618
-      value: 0.003854854
+      time: 10.581442
+      value: 0.0009556841
       inSlope: 0.0006279662
       outSlope: 0.0006279662
       tangentMode: 0
@@ -5845,17 +5845,17 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.24454395
     - serializedVersion: 3
-      time: 8.120827
-      value: 0.20962492
-      inSlope: 0.0746828
-      outSlope: 0.0746828
+      time: 18.844982
+      value: 0.09035475
+      inSlope: 0.04574563
+      outSlope: 0.04574563
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.22942379
+      outWeight: 0.71365565
     - serializedVersion: 3
-      time: 9.916363
-      value: 0.3021091
+      time: 20.212688
+      value: 0.15545687
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5870,7 +5870,7 @@ MonoBehaviour:
   StarsWhite: {fileID: 2097126941}
   StarsBlue: {fileID: 945361171}
   StarsViolet: {fileID: 1685552802}
-  cloudAlpha: 0.011871673
+  cloudAlpha: -0.0014644405
   starsAlpha: 0
   AudioController: {fileID: 416886393}
 --- !u!20 &1167732532 stripped
@@ -6518,8 +6518,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -11368,8 +11368,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
