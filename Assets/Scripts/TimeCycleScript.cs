@@ -43,8 +43,12 @@ public class TimeCycleScript : MonoBehaviour
             alpha = (1 - alpha) + 0.05f;
         }
 
-        CloudRenderer1.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, alpha));
-        CloudRenderer2.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, alpha));
+        if (CloudRenderer1 != null)
+        {
+            CloudRenderer1.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, alpha));
+            CloudRenderer2.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, alpha));
+
+        }
 
         // print(TimeOfDay / 24f);
 
