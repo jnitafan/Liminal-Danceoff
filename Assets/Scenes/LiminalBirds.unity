@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.99901134, g: 0.97826004, b: 0.96191007, a: 1}
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 0.9671352, b: 0.94408035, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0.20759895, b: 0.8679245, a: 1}
   m_AmbientEquatorColor: {r: 0.40730688, g: 0.6214133, b: 0.764151, a: 1}
   m_AmbientGroundColor: {r: 1, g: 0.76618034, b: 0.3066038, a: 1}
   m_AmbientIntensity: 1
@@ -325,19 +325,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010644843114, guid: fe69c79d384eb4f4f944d4ec253d357a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.66258365
+      value: -0.45946622
       objectReference: {fileID: 0}
     - target: {fileID: 4000010644843114, guid: fe69c79d384eb4f4f944d4ec253d357a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7489879
+      value: 0.8881953
       objectReference: {fileID: 0}
     - target: {fileID: 4000010543339178, guid: fe69c79d384eb4f4f944d4ec253d357a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9935643
+      value: -0.8212145
       objectReference: {fileID: 0}
     - target: {fileID: 4000010543339178, guid: fe69c79d384eb4f4f944d4ec253d357a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.11327003
+      value: 0.57061964
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe69c79d384eb4f4f944d4ec253d357a, type: 3}
@@ -417,7 +417,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 296cfafe44475a74db218b2dcbbf5634, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -654,7 +654,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.9969294, g: 0.9969294, b: 0.9969294, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
@@ -711,7 +711,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.0662738, y: 0.64697665, z: -0.75751245, w: 0.05660316}
+  m_LocalRotation: {x: -0.061628457, y: 0.70441604, z: 0.70441604, w: 0.061628457}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5808,16 +5808,16 @@ MonoBehaviour:
     key2: {r: 1, g: 0.67171586, b: 0.3651828, a: 0}
     key3: {r: 1, g: 1, b: 1, a: 0}
     key4: {r: 0.9984824, g: 0.9666284, b: 0.94153064, a: 0}
-    key5: {r: 0.9811321, g: 0.5850908, b: 0.27305093, a: 0}
+    key5: {r: 0.9245283, g: 0.668313, b: 0.07413671, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 3662
+    ctime0: 12529
     ctime1: 19275
     ctime2: 19661
     ctime3: 30262
     ctime4: 36623
     ctime5: 47995
-    ctime6: 62837
+    ctime6: 52621
     ctime7: 65150
     atime0: 0
     atime1: 65535
@@ -5830,32 +5830,32 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  TimeOfDay: 12.6
-  windSpeed: 0
+  TimeOfDay: 0
+  windSpeed: 0.053
   cloudVisiblityCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 10.581442
-      value: 0.0009556841
-      inSlope: 0.0006279662
-      outSlope: 0.0006279662
+      time: -0.07370949
+      value: 0.0066696275
+      inSlope: 0.002351746
+      outSlope: 0.002351746
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.24454395
+      outWeight: 0.5334721
     - serializedVersion: 3
-      time: 18.844982
-      value: 0.09035475
-      inSlope: 0.04574563
-      outSlope: 0.04574563
+      time: 8.224568
+      value: 0.08176577
+      inSlope: 0.034780513
+      outSlope: 0.034780513
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.16460238
       outWeight: 0.71365565
     - serializedVersion: 3
-      time: 20.212688
-      value: 0.15545687
+      time: 10.147625
+      value: 0.14688143
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5870,8 +5870,7 @@ MonoBehaviour:
   StarsWhite: {fileID: 2097126941}
   StarsBlue: {fileID: 945361171}
   StarsViolet: {fileID: 1685552802}
-  cloudAlpha: -0.0014644405
-  starsAlpha: 0
+  cloudAlpha: 0.009813208
   AudioController: {fileID: 416886393}
 --- !u!20 &1167732532 stripped
 Camera:

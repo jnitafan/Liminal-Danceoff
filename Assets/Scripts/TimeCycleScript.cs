@@ -48,6 +48,8 @@ public class TimeCycleScript : MonoBehaviour
 
         CloudRenderer_low.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
         CloudRenderer_high.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
+
+        cloudAlpha = 0f;
     }
 
     private void Update()
@@ -68,17 +70,22 @@ public class TimeCycleScript : MonoBehaviour
             StarsWhiteParticle.Stop();
             StarsBlueParticle.Stop();
             StarsVioletParticle.Stop();
-            nightSfx.volume = 0.0f;
         }
+
+        nightSfx.volume = Mathf.Lerp(0.0f, 0.5f, (((TimeOfDay - 12) % 24f + 24f) % 24f) / 24f);
+
+        if (nightSfx.volume > 0.25f)
+        {
+            nightSfx.volume = 1f - nightSfx.volume;
+        }
+        // (x%m + m)%m;
 
         if (TimeOfDay < 6f || 18f < TimeOfDay) //Night
         {
             StarsWhiteParticle.Play();
             StarsBlueParticle.Play();
             StarsVioletParticle.Play();
-            nightSfx.volume = 0.05f;
         }
-        // print(TimeOfDay / 24f);
 
         if (Application.isPlaying)
         {
