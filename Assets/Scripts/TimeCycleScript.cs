@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 [ExecuteAlways]
 public class TimeCycleScript : MonoBehaviour
@@ -16,40 +15,57 @@ public class TimeCycleScript : MonoBehaviour
     [Header("Clouds Variables")]
     [Range(0, 0.25f)]
     public float windSpeed = 1.0f;
-
-    public GameObject[] Clouds;
-    private MeshRenderer CloudRenderer1;
-    private MeshRenderer CloudRenderer2;
-    public float alpha = 0.0f;
+    public AnimationCurve cloudVisiblityCurve;
+    public GameObject Clouds_low;
+    private MeshRenderer CloudRenderer_low;
+    public GameObject Clouds_high;
+    private MeshRenderer CloudRenderer_high;
+    [Header("Stars Variables")]
+    public GameObject StarsWhite;
+    private ParticleSystem StarsWhiteParticle;
+    public GameObject StarsBlue;
+    private ParticleSystem StarsBlueParticle;
+    public GameObject StarsViolet;
+    private ParticleSystem StarsVioletParticle;
+    public float cloudAlpha = 0.0f;
+    public float starsAlpha = 0.0f;
 
 
     private void Start()
     {
-        CloudRenderer1 = Clouds[0].GetComponent<MeshRenderer>();
-        CloudRenderer2 = Clouds[1].GetComponent<MeshRenderer>();
+        CloudRenderer_low = Clouds_low.GetComponent<MeshRenderer>();
+        CloudRenderer_high = Clouds_high.GetComponent<MeshRenderer>();
+        StarsWhiteParticle = StarsWhite.GetComponent<ParticleSystem>();
+        StarsBlueParticle = StarsBlue.GetComponent<ParticleSystem>();
+        StarsVioletParticle = StarsViolet.GetComponent<ParticleSystem>();
+
     }
 
     private void Update()
     {
 
         //rotate clouds every frame
-        Clouds[0].transform.Rotate(0f, windSpeed / 2, 0f);
-        Clouds[1].transform.Rotate(0f, windSpeed, 0f);
+        Clouds_low.transform.Rotate(0f, windSpeed / 2, 0f);
+        Clouds_high.transform.Rotate(0f, windSpeed, 0f);
 
         //set cloud alpha dependant on time of day
-        alpha = TimeOfDay / 24f;
-        if (alpha > 0.5)
+        cloudAlpha = cloudVisiblityCurve.Evaluate(Time.time);
+
+        CloudRenderer_low.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
+        CloudRenderer_high.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
+
+        if (TimeOfDay > 6f || TimeOfDay < 18f)
         {
-            alpha = (1 - alpha) + 0.05f;
+            StarsWhiteParticle.Stop();
+            StarsBlueParticle.Stop();
+            StarsVioletParticle.Stop();
         }
-
-        if (CloudRenderer1 != null)
+        else if (TimeOfDay < 6f || TimeOfDay > 18f)
         {
-            CloudRenderer1.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, alpha));
-            CloudRenderer2.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, alpha));
-
+            StarsWhiteParticle.Play();
+            StarsBlueParticle.Play();
+            StarsVioletParticle.Play();
         }
-
         // print(TimeOfDay / 24f);
 
         if (Application.isPlaying)
@@ -93,7 +109,5 @@ public class TimeCycleScript : MonoBehaviour
         {
             DirectionalLight = RenderSettings.sun;
         }
-
-        Clouds = GameObject.FindGameObjectsWithTag("Clouds");
     }
 }
