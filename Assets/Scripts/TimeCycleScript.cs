@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.UIElements;
+using UnityEngine;
 
 [ExecuteAlways]
 public class TimeCycleScript : MonoBehaviour
@@ -29,6 +32,8 @@ public class TimeCycleScript : MonoBehaviour
     private ParticleSystem StarsVioletParticle;
     public float cloudAlpha = 0.0f;
     public float starsAlpha = 0.0f;
+    
+
 
 
     private void Start()
@@ -54,14 +59,15 @@ public class TimeCycleScript : MonoBehaviour
         CloudRenderer_low.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
         CloudRenderer_high.sharedMaterial.SetColor("_CloudColor", new Color(1, 1, 1, cloudAlpha));
 
-        if (TimeOfDay > 6f || TimeOfDay < 18f)
+        if (TimeOfDay > 6f || 18f > TimeOfDay) //Day
         {
+            
             StarsWhiteParticle.Stop();
             StarsBlueParticle.Stop();
             StarsVioletParticle.Stop();
 
         }
-        else if (TimeOfDay < 6f || TimeOfDay > 18f)
+        else if (TimeOfDay < 6f || 18f < TimeOfDay) //Night
         {
             StarsWhiteParticle.Play();
             StarsBlueParticle.Play();

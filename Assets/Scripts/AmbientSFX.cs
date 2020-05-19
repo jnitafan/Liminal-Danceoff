@@ -8,6 +8,8 @@ public class AmbientSFX : MonoBehaviour
         public AudioSource daySfx;
         public AudioSource nightSfx;
 
+        audi
+
         public bool dayTime = true;
         public bool nightTime = false;
 
@@ -15,8 +17,8 @@ public class AmbientSFX : MonoBehaviour
         public float dayDuration = 10.0f;
         public float nightDuration = 10.0f;
 
-        //public AudioClip dayAudio;
-        //public AudioClip nightAudio;
+        //public AudioClip Birds;
+        //public AudioClip NightTime;
 
         // Start is called before the first frame update
         void Start()
