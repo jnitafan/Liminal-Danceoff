@@ -32,6 +32,7 @@ public class BoidBehaviour : MonoBehaviour
 
     void Update()
     {
+        // Update position.
         var currentPosition = transform.position;
         var currentRotation = transform.rotation;
 
