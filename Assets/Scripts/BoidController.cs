@@ -18,7 +18,7 @@ public class BoidController : MonoBehaviour
     [Range(0.1f, 20.0f)]
     public float rotationCoeff = 4.0f;
 
-    [Range(0.1f, 10.0f)]
+    [Range(0.1f, 100.0f)]
     public float neighborDist = 2.0f;
 
     public LayerMask searchLayer;
@@ -28,7 +28,7 @@ public class BoidController : MonoBehaviour
         // Spawn boids as much as the spawn count.
         for (var i = 0; i < spawnCount; i++) Spawn();
     }
-    
+
     // Spawn boid randomly within the spawn radius.
     public GameObject Spawn()
     {
