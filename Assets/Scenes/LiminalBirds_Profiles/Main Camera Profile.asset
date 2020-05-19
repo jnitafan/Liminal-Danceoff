@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 0
+    value: 1
   gradingMode:
     overrideState: 1
     value: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     value: 15
   saturation:
     overrideState: 1
-    value: 56
+    value: 13
   brightness:
     overrideState: 0
     value: 0
@@ -77,40 +77,40 @@ MonoBehaviour:
     value: 0
   mixerRedOutRedIn:
     overrideState: 0
-    value: -104
+    value: 50
   mixerRedOutGreenIn:
     overrideState: 0
-    value: 4
+    value: 50
   mixerRedOutBlueIn:
     overrideState: 0
-    value: -9
+    value: 50
   mixerGreenOutRedIn:
     overrideState: 0
-    value: 3
+    value: 50
   mixerGreenOutGreenIn:
     overrideState: 0
-    value: 86
+    value: 50
   mixerGreenOutBlueIn:
     overrideState: 0
-    value: 13
+    value: 50
   mixerBlueOutRedIn:
     overrideState: 0
-    value: 20
+    value: 50
   mixerBlueOutGreenIn:
     overrideState: 0
-    value: -18
+    value: 50
   mixerBlueOutBlueIn:
     overrideState: 0
-    value: 97
+    value: 50
   lift:
     overrideState: 1
-    value: {x: 1, y: 0.9388145, z: 0.9562555, w: 0.15416238}
+    value: {x: 0.8829089, y: 0.89371586, z: 1, w: 0.062240668}
   gamma:
     overrideState: 1
-    value: {x: 0.95139235, y: 1, z: 0.8683116, w: 0.05138747}
+    value: {x: 0.82004994, y: 1, z: 0.8311171, w: 0}
   gain:
     overrideState: 1
-    value: {x: 0.91003114, y: 1, z: 0.9447145, w: -0.1130524}
+    value: {x: 0.70174974, y: 0.71768886, z: 1, w: -0.22821571}
   masterCurve:
     overrideState: 0
     value:
@@ -271,7 +271,7 @@ MonoBehaviour:
       - 0.984375
       - 0.9921875
   redCurve:
-    overrideState: 0
+    overrideState: 1
     value:
       curve:
         serializedVersion: 2

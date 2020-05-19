@@ -6,27 +6,27 @@ public class BirdsMovement : MonoBehaviour
 {
     public float flySpeed = 1.0f;
     public float time = 0.0f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (time<10)
+        if (time < 10)
         {
             flyForward();
             time = time + Time.deltaTime;
         }
-        if (time>10)
+        if (time > 10)
         {
             turnAround();
             time = time + Time.deltaTime;
         }
-        if (time>15)
+        if (time > 15)
         {
             time = 0.0f;
         }
@@ -40,8 +40,8 @@ public class BirdsMovement : MonoBehaviour
 
     void turnAround()
     {
-        transform.Translate((flySpeed*1.5f) * Vector3.forward * Time.deltaTime);
-        transform.Rotate(0.0f, 0.05f*flySpeed, 0.0f);
+        transform.Translate((flySpeed * 1.5f) * Vector3.forward * Time.deltaTime);
+        transform.Rotate(0.0f, 0.05f * flySpeed, 0.0f);
 
     }
 }
