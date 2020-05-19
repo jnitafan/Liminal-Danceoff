@@ -59,6 +59,7 @@ public class TimeCycleScript : MonoBehaviour
             StarsWhiteParticle.Stop();
             StarsBlueParticle.Stop();
             StarsVioletParticle.Stop();
+
         }
         else if (TimeOfDay < 6f || TimeOfDay > 18f)
         {
