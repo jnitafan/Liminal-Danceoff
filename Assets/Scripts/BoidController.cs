@@ -25,14 +25,17 @@ public class BoidController : MonoBehaviour
 
     void Start()
     {
+        // Spawn boids as much as the spawn count.
         for (var i = 0; i < spawnCount; i++) Spawn();
     }
-
+    
+    // Spawn boid randomly within the spawn radius.
     public GameObject Spawn()
     {
         return Spawn(transform.position + Random.insideUnitSphere * spawnRadius);
     }
 
+    // Spawn boid at a specific location.
     public GameObject Spawn(Vector3 position)
     {
         var rotation = Quaternion.Slerp(transform.rotation, Random.rotation, 0.3f);
