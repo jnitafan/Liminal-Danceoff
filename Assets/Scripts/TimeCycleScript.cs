@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 using UnityEngine;
+
 
 [ExecuteAlways]
 public class TimeCycleScript : MonoBehaviour
@@ -17,7 +18,7 @@ public class TimeCycleScript : MonoBehaviour
 
     // Cloud related variables.
     [Header("Clouds Variables")]
-    [Range(0, 0.25f)]
+    [Range(0, 0.50f)]
     public float windSpeed = 1.0f;
     public float cloudAlpha;
     public AnimationCurve cloudVisiblityCurve;
@@ -88,7 +89,14 @@ public class TimeCycleScript : MonoBehaviour
 
         // Sound effects during night time.
 
+<<<<<<< Updated upstream
         Volume = Mathf.Lerp(0.0f, 0.25f, TimeOfDay);
+=======
+        if (nightSfx.volume > 0.50f)
+        {
+            nightSfx.volume = 1f - nightSfx.volume;
+        }
+>>>>>>> Stashed changes
         // (x%m + m)%m;
         nightSfx.volume = Volume;
 
