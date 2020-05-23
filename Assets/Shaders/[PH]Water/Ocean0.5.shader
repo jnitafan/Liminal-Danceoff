@@ -1,4 +1,4 @@
-Shader "PBRMaster"
+Shader "PBR Master"
 {
     Properties
     {
@@ -18,7 +18,7 @@ Vector1_5D9D0320("NormalStrength", Range(0, 0.5)) = 0.1
         Tags
         {
             "RenderPipeline"="LightweightPipeline"
-            "RenderType"="Opaque"
+            "RenderType"="Transparent"
             "Queue"="Transparent+0"
         }
         Pass

@@ -27,7 +27,7 @@ Material:
     - _SunSizeConvergence: 5
     m_Colors:
     - _GroundColor: {r: 0.34749907, g: 0.5377358, b: 0.5330959, a: 1}
-    - _SkyTint: {r: 0.24265754, g: 0.32836524, b: 0.38679248, a: 1}
+    - _SkyTint: {r: 0.4793966, g: 0.764151, b: 0.7004, a: 1}
 --- !u!114 &5906245218676234694
 MonoBehaviour:
   m_ObjectHideFlags: 11
