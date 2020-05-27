@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -34,12 +34,10 @@ public class TimeCycleScript : MonoBehaviour
     private ParticleSystem StarsBlueParticle;
     public GameObject StarsViolet;
     private ParticleSystem StarsVioletParticle;
-
+    
     // Audio related variables.
-    [Header("Audio Settings")]
     public GameObject AudioController;
     private AudioSource nightSfx;
-    public float Volume;
 
     private void Start()
     {
@@ -57,12 +55,6 @@ public class TimeCycleScript : MonoBehaviour
 
         // Cloud visibilty.
         cloudAlpha = 0f;
-
-        // Preset Volume to 0 before starting.
-        Volume = 0;
-
-        // Also Preset time of day to 0 on starting;
-        TimeOfDay = 0;
     }
 
     private void Update()
@@ -87,12 +79,13 @@ public class TimeCycleScript : MonoBehaviour
         }
 
         // Sound effects during night time.
+        nightSfx.volume = Mathf.Lerp(0.0f, 0.5f, (((TimeOfDay - 12) % 24f + 24f) % 24f) / 24f);
 
-        Volume = Mathf.Lerp(0.0f, 0.25f, TimeOfDay);
+        if (nightSfx.volume > 0.25f)
+        {
+            nightSfx.volume = 1f - nightSfx.volume;
+        }
         // (x%m + m)%m;
-        nightSfx.volume = Volume;
-
-
 
         // Stars during night time.
         if (TimeOfDay < 6f || 18f < TimeOfDay)
@@ -105,7 +98,7 @@ public class TimeCycleScript : MonoBehaviour
         if (Application.isPlaying)
         {
             // Replace with a reference to the game time.
-            TimeOfDay += Time.deltaTime;
+            TimeOfDay += Time.deltaTime / 3f;
             TimeOfDay %= 24; // Modulus to ensure always between 0-24.
             UpdateLighting(TimeOfDay / 24f);
         }

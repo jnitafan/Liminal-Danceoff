@@ -1,0 +1,210 @@
+{
+  "SceneGameObjects": [
+    {
+      "Name": null,
+      "Index": 0,
+      "NamePath": "/_$AssetLookup",
+      "IndexPath": "/0",
+      "Components": [],
+      "Children": []
+    },
+    {
+      "Name": null,
+      "Index": 1,
+      "NamePath": "/[ExperienceApp]",
+      "IndexPath": "/1",
+      "Components": [],
+      "Children": [
+        {
+          "Name": null,
+          "Index": 0,
+          "NamePath": "/[ExperienceApp]/VRAvatar",
+          "IndexPath": "/1/0",
+          "Components": [],
+          "Children": [
+            {
+              "Name": null,
+              "Index": 0,
+              "NamePath": "/[ExperienceApp]/VRAvatar/Auxiliaries",
+              "IndexPath": "/1/0/0",
+              "Components": [],
+              "Children": [
+                {
+                  "Name": null,
+                  "Index": 0,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/Auxiliaries/EventSystem",
+                  "IndexPath": "/1/0/0/0",
+                  "Components": [],
+                  "Children": []
+                },
+                {
+                  "Name": null,
+                  "Index": 1,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/Auxiliaries/PhysicsRaycaster",
+                  "IndexPath": "/1/0/0/1",
+                  "Components": [],
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Name": null,
+              "Index": 1,
+              "NamePath": "/[ExperienceApp]/VRAvatar/Head",
+              "IndexPath": "/1/0/1",
+              "Components": [],
+              "Children": [
+                {
+                  "Name": null,
+                  "Index": 0,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/Head/CenterEye",
+                  "IndexPath": "/1/0/1/0",
+                  "Components": [],
+                  "Children": [
+                    {
+                      "Name": null,
+                      "Index": 0,
+                      "NamePath": "/[ExperienceApp]/VRAvatar/Head/CenterEye/Ears",
+                      "IndexPath": "/1/0/1/0/0",
+                      "Components": [],
+                      "Children": []
+                    },
+                    {
+                      "Name": null,
+                      "Index": 1,
+                      "NamePath": "/[ExperienceApp]/VRAvatar/Head/CenterEye/Anchor",
+                      "IndexPath": "/1/0/1/0/1",
+                      "Components": [],
+                      "Children": [
+                        {
+                          "Name": null,
+                          "Index": 0,
+                          "NamePath": "/[ExperienceApp]/VRAvatar/Head/CenterEye/Anchor/GazePointer",
+                          "IndexPath": "/1/0/1/0/1/0",
+                          "Components": [],
+                          "Children": [
+                            {
+                              "Name": null,
+                              "Index": 0,
+                              "NamePath": "/[ExperienceApp]/VRAvatar/Head/CenterEye/Anchor/GazePointer/Reticle",
+                              "IndexPath": "/1/0/1/0/1/0/0",
+                              "Components": [],
+                              "Children": [
+                                {
+                                  "Name": null,
+                                  "Index": 0,
+                                  "NamePath": "/[ExperienceApp]/VRAvatar/Head/CenterEye/Anchor/GazePointer/Reticle/GazeTimer",
+                                  "IndexPath": "/1/0/1/0/1/0/0/0",
+                                  "Components": [],
+                                  "Children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": null,
+                  "Index": 1,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/Head/LeftEye",
+                  "IndexPath": "/1/0/1/1",
+                  "Components": [],
+                  "Children": []
+                },
+                {
+                  "Name": null,
+                  "Index": 2,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/Head/RightEye",
+                  "IndexPath": "/1/0/1/2",
+                  "Components": [],
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Name": null,
+              "Index": 2,
+              "NamePath": "/[ExperienceApp]/VRAvatar/PrimaryHand",
+              "IndexPath": "/1/0/2",
+              "Components": [],
+              "Children": [
+                {
+                  "Name": null,
+                  "Index": 0,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/PrimaryHand/Anchor",
+                  "IndexPath": "/1/0/2/0",
+                  "Components": [],
+                  "Children": [
+                    {
+                      "Name": null,
+                      "Index": 0,
+                      "NamePath": "/[ExperienceApp]/VRAvatar/PrimaryHand/Anchor/Controller",
+                      "IndexPath": "/1/0/2/0/0",
+                      "Components": [],
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Name": null,
+              "Index": 3,
+              "NamePath": "/[ExperienceApp]/VRAvatar/SecondaryHand",
+              "IndexPath": "/1/0/3",
+              "Components": [],
+              "Children": [
+                {
+                  "Name": null,
+                  "Index": 0,
+                  "NamePath": "/[ExperienceApp]/VRAvatar/SecondaryHand/Anchor",
+                  "IndexPath": "/1/0/3/0",
+                  "Components": [],
+                  "Children": [
+                    {
+                      "Name": null,
+                      "Index": 0,
+                      "NamePath": "/[ExperienceApp]/VRAvatar/SecondaryHand/Anchor/Controller",
+                      "IndexPath": "/1/0/3/0/0",
+                      "Components": [],
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": null,
+          "Index": 1,
+          "NamePath": "/[ExperienceApp]/Main Camera",
+          "IndexPath": "/1/1",
+          "Components": [],
+          "Children": []
+        },
+        {
+          "Name": null,
+          "Index": 2,
+          "NamePath": "/[ExperienceApp]/Directional Light",
+          "IndexPath": "/1/2",
+          "Components": [],
+          "Children": []
+        },
+        {
+          "Name": null,
+          "Index": 3,
+          "NamePath": "/[ExperienceApp]/Terrain",
+          "IndexPath": "/1/3",
+          "Components": [],
+          "Children": []
+        }
+      ]
+    }
+  ],
+  "Prefabs": [],
+  "ScriptableObjects": []
+}

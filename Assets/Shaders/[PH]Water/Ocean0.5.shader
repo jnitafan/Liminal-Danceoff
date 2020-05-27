@@ -1,4 +1,4 @@
-Shader "PBR Master"
+Shader "PBR Master1"
 {
     Properties
     {
@@ -18,7 +18,7 @@ Vector1_5D9D0320("NormalStrength", Range(0, 0.5)) = 0.1
         Tags
         {
             "RenderPipeline"="LightweightPipeline"
-            "RenderType"="Transparent"
+            "RenderType"="Opaque"
             "Queue"="Transparent+0"
         }
         Pass
@@ -67,11 +67,7 @@ Vector1_5D9D0320("NormalStrength", Range(0, 0.5)) = 0.1
             #define _NORMALMAP 1
             #define REQUIRE_DEPTH_TEXTURE
 
-        	#include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
-        	#include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
-        	#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
-        	#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
-        	#include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/ShaderGraphFunctions.hlsl"
+        	
 
             CBUFFER_START(UnityPerMaterial)
             float4 Color_C3CD9FB5;

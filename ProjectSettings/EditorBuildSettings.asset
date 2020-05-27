@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/limVRupdated.unity
+    guid: 2f18d1c4b54a32d4b8ba054cb05cb17a
   m_configObjects: {}
