@@ -27,7 +27,7 @@ public class TileMatChange : MonoBehaviour
     }
     IEnumerator Timer()
     {
-        yield return new WaitForSeconds(16 * Time.deltaTime);
+        yield return new WaitForSeconds(30 * Time.deltaTime);
         changeColor = true;
     }
 }
