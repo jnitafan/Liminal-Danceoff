@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 1
+    m_BakeBackend: 2
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
@@ -96,7 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 112000000, guid: 2aed67202046cce428d5d4f63cb153f5,
+  m_LightingDataAsset: {fileID: 112000000, guid: 2ed891e40364d924d9c81c01315121c5,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -1043,7 +1043,7 @@ PrefabInstance:
     - target: {fileID: 3736737255631218351, guid: 510ef6aaf5bb8d54092aa24ad454af1c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.3
+      value: -3.386
       objectReference: {fileID: 0}
     - target: {fileID: 3736737255631218351, guid: 510ef6aaf5bb8d54092aa24ad454af1c,
         type: 3}
@@ -2035,6 +2035,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1407483334204178264, guid: 53c77d806cff2854da96d9dc72e7fe44,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 15df5d2cbd98bba41be6d434437ab501, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c77d806cff2854da96d9dc72e7fe44, type: 3}
 --- !u!1001 &1600135495642446771
@@ -2415,7 +2420,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 385766d310cb8fa46915bd16cd981804, type: 2}
+      objectReference: {fileID: 2100000, guid: e3bec4045c7c3f74e813db75b4473928, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fea710ae584e4d43b2aafffe7f2bd71, type: 3}
 --- !u!4 &5006512735101452152 stripped
@@ -3206,7 +3211,7 @@ PrefabInstance:
     - target: {fileID: 3736737255631218351, guid: 510ef6aaf5bb8d54092aa24ad454af1c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.3
+      value: -3.386
       objectReference: {fileID: 0}
     - target: {fileID: 3736737255631218351, guid: 510ef6aaf5bb8d54092aa24ad454af1c,
         type: 3}
