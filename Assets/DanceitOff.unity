@@ -793,10 +793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a8d59df8da80a41b128a37b8c782b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xAngle: 0.1
-  yAngle: 0.17
-  zAngle: 0.26
-  speed: 1.44
+  xRotate: 0
+  yRotate: 0
+  zRotate: 0
+  speed: 1
 --- !u!4 &380178578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4688018418740403465, guid: b32d1675258da614893401c2d8ba15f6,
@@ -5801,10 +5801,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a8d59df8da80a41b128a37b8c782b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xAngle: 0.1
-  yAngle: 0.17
-  zAngle: 0.26
-  speed: 1.44
+  xRotate: 0
+  yRotate: 0
+  zRotate: 0
+  speed: -1
 --- !u!1 &2058583856
 GameObject:
   m_ObjectHideFlags: 0

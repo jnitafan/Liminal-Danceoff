@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class LaserRotation : MonoBehaviour
 {
-    public float xAngle, yAngle, zAngle;
+
+    public float xRotate, yRotate, zRotate;
     public float speed;
-    
-    
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +17,11 @@ public class LaserRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(xAngle * speed, yAngle * speed, zAngle * speed);
+    
+        zRotate = Mathf.Cos(Time.deltaTime * 10);
+        transform.Rotate(xRotate, yRotate, zRotate * speed, Space.World);
     }
+
+
+
 }
