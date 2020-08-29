@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpotlightLaserMovement : MonoBehaviour
+public class SpotlightMovement : MonoBehaviour
 {
     float xRotation;
     float yRotation;
@@ -25,4 +25,3 @@ public class SpotlightLaserMovement : MonoBehaviour
         transform.Rotate(zRotation, xRotation, yRotation, Space.World);
     }
 }
-
