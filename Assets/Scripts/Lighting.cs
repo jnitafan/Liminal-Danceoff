@@ -17,7 +17,7 @@ public class Lighting : MonoBehaviour
     public bool IsON = true;
     private float delaySync;
     public float BPM = 60f;
-    private float[] curves = new float[4]; //create float array with 3 elements. elements shown below
+    private float[] curves = { 0, 0, 0, 1 }; //create float array with 4 elements. elements shown below
     public enum curveEnum : int
     {
         strobe,
@@ -90,8 +90,6 @@ public class Lighting : MonoBehaviour
                 }
             }
         }
-
-        curves[3] = 1;
 
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
         StartCoroutine(runPerBeat());
