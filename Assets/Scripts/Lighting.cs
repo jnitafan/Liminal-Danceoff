@@ -15,8 +15,9 @@ public class Lighting : MonoBehaviour
     // Variable Declaration
     [Header("Main Components")]
     public bool IsON = true;
+    private float delaySync;
     public float BPM = 60f;
-    private float BPMPercentage; //BPM converted to a coundown percentage from 1 to 0 (ask jacob for an explanation or look at voidUpdate)
+    private float BPMLerp; //BPM converted to a coundown percentage from 1 to 0 (ask jacob for an explanation or look at voidUpdate)
 
     [Space(10)]
     [Header("Static Light Settings")]
@@ -87,7 +88,8 @@ public class Lighting : MonoBehaviour
     void Update()
     {
         // Lerp the BPM into a percentage, setting the value to 1 every beat, and decreasing as a percentage of time until the next beat will happen
-        BPMPercentage = Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI));
+        BPMLerp = Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI));
+        delaySync = Time.time % (60 / BPM);
 
     }
 
@@ -105,17 +107,15 @@ public class Lighting : MonoBehaviour
     {
         while (IsON)
         {
-
-
             // NOTE: (Continued from above) this was the rest of the code in ChangeColors() above. If we put everything inside changecolors() in this function, it will be hella optimized.
             LiminalSign.material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[3]]);
-            CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], BPMPercentage));
-            CeilingLights.materials[1].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], BPMPercentage));
+            CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], BPMLerp));
+            CeilingLights.materials[1].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], BPMLerp));
 
             randomizeColorMemory();
 
             // There is a bug here, the coroutine is not synced with the time.time function, if the application lags out then this will be desynced. (fix iteration 2 mabye.)
-            yield return new WaitForSeconds(60f / BPM);
+            yield return new WaitForSecondsRealtime((60f / BPM) - delaySync);
 
         }
         yield return null;
@@ -129,27 +129,26 @@ public class Lighting : MonoBehaviour
             for (int i = 0; i < danceTileArray.Count; i++)
             {
                 // change the tile color depending on the 
-                danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], BPMPercentage));
+                danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], BPMLerp));
 
-                //yeah i am not running two for loops in a timeperiod of a frame/millisecond
+                //yeah i am not running two for loops in a timeperiod of a frame/millisecond, if checks are way more optimal
                 if (i < FluroscentLightbulbs.Count)
                 {
                     FluroscentLightbulbs[i].material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[i]]);
 
                     if (i < spotLights.Count)
                     {
-                        spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], BPMPercentage);
+                        spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], BPMLerp);
                     }
 
-                }
-
-                if (i < Lazers.Count)
-                {
-                    Lazers[i].startColor = lightColours[nextLightPerLightIndex[0]];
-                    Lazers[i].endColor = lightColours[nextLightPerLightIndex[1]];
+                    if (i < Lazers.Count)
+                    {
+                        Lazers[i].startColor = lightColours[nextLightPerLightIndex[0]];
+                        Lazers[i].endColor = lightColours[nextLightPerLightIndex[1]];
+                    }
                 }
             }
-            yield return null;
+            yield return new WaitForSecondsRealtime(0 - delaySync);
         }
     }
 
