@@ -80,6 +80,7 @@ public class Lighting : MonoBehaviour
 
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
         StartCoroutine(runPerBeat());
+        StartCoroutine(runAMAP());
     }
 
     //Run perframe
@@ -87,41 +88,6 @@ public class Lighting : MonoBehaviour
     {
         // Lerp the BPM into a percentage, setting the value to 1 every beat, and decreasing as a percentage of time until the next beat will happen
         BPMPercentage = Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI));
-
-        ChangeColors();
-
-    }
-
-    // This function changes all the colors of the attached gameobjects
-    void ChangeColors()
-    {
-        for (int i = 0; i < danceTileArray.Count; i++)
-        {
-            // change the tile color depending on the 
-            danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], BPMPercentage));
-
-            //yeah i am not running two for loops in a timeperiod of a frame/millisecond
-            if (i < FluroscentLightbulbs.Count)
-            {
-                FluroscentLightbulbs[i].material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[i]]);
-            }
-
-            if (i < spotLights.Count)
-            {
-                spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], BPMPercentage);
-            }
-
-            if (i < Lazers.Count)
-            {
-                Lazers[i].startColor = lightColours[nextLightPerLightIndex[0]];
-                Lazers[i].endColor = lightColours[nextLightPerLightIndex[1]];
-            }
-        }
-
-        // NOTE: the rest of the lighting color change code are in the function runPerBeat to save on performance (as it changes when the engine can handle, not forcing it per frame.)
-        // I might optimize it later to have everything not tied to running on the framerate if i have time later (Iteration 2 Mabye, but for now this is good)
-        // but if you want to have a go at it, try find a way to move the rest of this entire ChangeColours() Function inside the IEnumerator runPerBeat() Coroutine
-        // I have no clue why adding a forloop inside a coroutine makes it fail to run whats inside the for loop. im a noob -____-
 
     }
 
@@ -140,6 +106,7 @@ public class Lighting : MonoBehaviour
         while (IsON)
         {
 
+
             // NOTE: (Continued from above) this was the rest of the code in ChangeColors() above. If we put everything inside changecolors() in this function, it will be hella optimized.
             LiminalSign.material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[3]]);
             CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], BPMPercentage));
@@ -151,5 +118,39 @@ public class Lighting : MonoBehaviour
             yield return new WaitForSeconds(60f / BPM);
 
         }
+        yield return null;
     }
+
+    // AMAP = run AS MUCH AS POSSIBLE MAXIMUM POWAR (lol its in a coroutine so its more like as much as you want, no pressure computer :) smiley face)  
+    IEnumerator runAMAP()
+    {
+        while (IsON)
+        {
+            for (int i = 0; i < danceTileArray.Count; i++)
+            {
+                // change the tile color depending on the 
+                danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], BPMPercentage));
+
+                //yeah i am not running two for loops in a timeperiod of a frame/millisecond
+                if (i < FluroscentLightbulbs.Count)
+                {
+                    FluroscentLightbulbs[i].material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[i]]);
+
+                    if (i < spotLights.Count)
+                    {
+                        spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], BPMPercentage);
+                    }
+
+                }
+
+                if (i < Lazers.Count)
+                {
+                    Lazers[i].startColor = lightColours[nextLightPerLightIndex[0]];
+                    Lazers[i].endColor = lightColours[nextLightPerLightIndex[1]];
+                }
+            }
+            yield return null;
+        }
+    }
+
 }
