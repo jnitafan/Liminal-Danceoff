@@ -17,20 +17,33 @@ public class Lighting : MonoBehaviour
     public bool IsON = true;
     private float delaySync;
     public float BPM = 60f;
-    private float BPMLerp; //BPM converted to a coundown percentage from 1 to 0 (ask jacob for an explanation or look at voidUpdate)
+    private float[] curves = new float[4]; //create float array with 3 elements. elements shown below
+    public enum curveEnum : int
+    {
+        strobe,
+        sine,
+        square,
+        constant
+    }
 
     [Space(10)]
     [Header("Static Light Settings")]
     public GameObject danceTiles;
+    public curveEnum danceTileLighting;
     private List<Renderer> danceTileArray = new List<Renderer>(); //Array of gameobjects inside dancetiles
-    public Transform LongLights;
+    public Transform longLights;
+    public curveEnum longLightLighting;
     private List<Renderer> FluroscentLightbulbs = new List<Renderer>();
-    public Transform LightBoxes;
+    public Transform lightBoxes;
+    public curveEnum lightBoxesLighting;
     private List<Light> spotLights = new List<Light>();
-    public Transform LaserMachines;
+    public Transform laserMachines;
+    public curveEnum laserMachineLighting;
     private List<LineRenderer> Lazers = new List<LineRenderer>();
     public MeshRenderer LiminalSign;
+    public curveEnum LiminalSignLighting;
     public MeshRenderer CeilingLights;
+    public curveEnum CeilingLightsLighting;
     private List<int> nextLightPerLightIndex = new List<int>(); //keep in memory the next color chosen for each single light
     [Space(5)]
     [ColorUsage(true, true)]
@@ -39,8 +52,7 @@ public class Lighting : MonoBehaviour
     [Space(10)]
     [Header("Colours")]
     [ColorUsage(true, true)]
-    public Color[] lightColours = {
-    };
+    public Color[] lightColours = { };
 
 
     // Instantiate all Arrays with their respective GameObject
@@ -55,19 +67,19 @@ public class Lighting : MonoBehaviour
         }
 
         //add all the lightbulbs in the array
-        foreach (Light Lightbulb in LightBoxes.GetComponentsInChildren(typeof(Light)))
+        foreach (Light Lightbulb in lightBoxes.GetComponentsInChildren(typeof(Light)))
         {
             spotLights.Add(Lightbulb);
         }
 
         //add all the lazerbeam components
-        foreach (LineRenderer lazer in LaserMachines.GetComponentsInChildren(typeof(LineRenderer)))
+        foreach (LineRenderer lazer in laserMachines.GetComponentsInChildren(typeof(LineRenderer)))
         {
             Lazers.Add(lazer);
         }
 
         //This code is quite a bit messy, but it only runs once so YOLO lmao
-        foreach (Transform LongLight in LongLights)
+        foreach (Transform LongLight in longLights)
         {
             //Get the child of the child inside the LongLEDs -> LongLight Prefab
             foreach (Transform FluroscentLightbulb in LongLight)
@@ -79,44 +91,39 @@ public class Lighting : MonoBehaviour
             }
         }
 
+        curves[3] = 1;
+
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
         StartCoroutine(runPerBeat());
         StartCoroutine(runAMAP());
+
+
     }
 
     //Run perframe
     void Update()
     {
         // Lerp the BPM into a percentage, setting the value to 1 every beat, and decreasing as a percentage of time until the next beat will happen
-        BPMLerp = Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI));
+        curves[0] = Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI));
+        curves[1] = Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time * (BPM / 60f)));
+        curves[2] = Mathf.InverseLerp(-1, 1, Mathf.Sign(Mathf.Sin(2f * Time.time * Mathf.PI)));
+        //curves[3] = 1; //moved this line to the start(); function because its a constant.
         delaySync = Time.time % (60 / BPM);
 
     }
 
     // Simple twoliner that randomizes each single light color depending on what lights there are.
-    void randomizeColorMemory()
-    {
-        for (int i = 0; i < danceTileArray.Count; i++)
-        {
-            nextLightPerLightIndex[i] = Random.Range(0, lightColours.Length);
-        }
-    }
-
-    //functions that run on a coroutine (much less resource intensive than loops on the update and can be paused)
+    // functions that run on a coroutine (much less resource intensive than loops on the update and can be paused)
     IEnumerator runPerBeat()
     {
         while (IsON)
         {
-            // NOTE: (Continued from above) this was the rest of the code in ChangeColors() above. If we put everything inside changecolors() in this function, it will be hella optimized.
-            LiminalSign.material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[3]]);
-            CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], BPMLerp));
-            CeilingLights.materials[1].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], BPMLerp));
-
-            randomizeColorMemory();
-
+            for (int i = 0; i < danceTileArray.Count; i++)
+            {
+                nextLightPerLightIndex[i] = Random.Range(0, lightColours.Length);
+            }
             // There is a bug here, the coroutine is not synced with the time.time function, if the application lags out then this will be desynced. (fix iteration 2 mabye.)
             yield return new WaitForSecondsRealtime((60f / BPM) - delaySync);
-
         }
         yield return null;
     }
@@ -129,25 +136,30 @@ public class Lighting : MonoBehaviour
             for (int i = 0; i < danceTileArray.Count; i++)
             {
                 // change the tile color depending on the 
-                danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], BPMLerp));
+                danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)danceTileLighting]));
 
                 //yeah i am not running two for loops in a timeperiod of a frame/millisecond, if checks are way more optimal
                 if (i < FluroscentLightbulbs.Count)
                 {
-                    FluroscentLightbulbs[i].material.SetColor("_EmissionColor", lightColours[nextLightPerLightIndex[i]]);
+                    FluroscentLightbulbs[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)longLightLighting]));
 
                     if (i < spotLights.Count)
                     {
-                        spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], BPMLerp);
+                        spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
                     }
 
                     if (i < Lazers.Count)
                     {
-                        Lazers[i].startColor = lightColours[nextLightPerLightIndex[0]];
-                        Lazers[i].endColor = lightColours[nextLightPerLightIndex[1]];
+                        Lazers[i].startColor = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[3]], curves[(int)laserMachineLighting]);
+                        Lazers[i].endColor = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[3]], curves[(int)laserMachineLighting]);
                     }
                 }
             }
+
+            LiminalSign.material.SetColor("_EmissionColor", Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[2]], curves[(int)LiminalSignLighting]));
+            CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], curves[(int)CeilingLightsLighting]));
+            CeilingLights.materials[1].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)CeilingLightsLighting]));
+
             yield return new WaitForSecondsRealtime(0 - delaySync);
         }
     }
