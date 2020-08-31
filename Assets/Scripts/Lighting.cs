@@ -31,19 +31,29 @@ public class Lighting : MonoBehaviour
     public GameObject danceTiles;
     public curveEnum danceTileLighting;
     private List<Renderer> danceTileArray = new List<Renderer>(); //Array of gameobjects inside dancetiles
+    [Space(3)]
+    public GameObject wallEmissions;
+    public curveEnum wallEmissionsLighting;
+    private List<Renderer> wallEmissionsArray = new List<Renderer>();
+    [Space(3)]
     public Transform longLights;
     public curveEnum longLightLighting;
     private List<Renderer> FluroscentLightbulbs = new List<Renderer>();
+    [Space(3)]
     public Transform lightBoxes;
     public curveEnum lightBoxesLighting;
     private List<Light> spotLights = new List<Light>();
+    [Space(3)]
     public Transform laserMachines;
     public curveEnum laserMachineLighting;
     private List<LineRenderer> Lazers = new List<LineRenderer>();
+    [Space(3)]
     public MeshRenderer LiminalSign;
     public curveEnum LiminalSignLighting;
+    [Space(3)]
     public MeshRenderer CeilingLights;
     public curveEnum CeilingLightsLighting;
+    [Space(3)]
     private List<int> nextLightPerLightIndex = new List<int>(); //keep in memory the next color chosen for each single light
     [Space(5)]
     [ColorUsage(true, true)]
@@ -66,6 +76,10 @@ public class Lighting : MonoBehaviour
             nextLightPerLightIndex.Add(0);
         }
 
+        foreach (Renderer tileRenderer in wallEmissions.GetComponentsInChildren(typeof(Renderer)))
+        {
+            wallEmissionsArray.Add(tileRenderer);
+        }
         //add all the lightbulbs in the array
         foreach (Light Lightbulb in lightBoxes.GetComponentsInChildren(typeof(Light)))
         {
@@ -144,6 +158,11 @@ public class Lighting : MonoBehaviour
                     if (i < spotLights.Count)
                     {
                         spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
+
+                        if (i < wallEmissionsArray.Count)
+                        {
+                            wallEmissionsArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[4]], curves[(int)wallEmissionsLighting]));
+                        }
                     }
 
                     if (i < Lazers.Count)

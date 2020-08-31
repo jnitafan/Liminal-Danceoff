@@ -6,7 +6,7 @@ public class SpotlightMovement : MonoBehaviour
 {
     float xRotation;
     float yRotation;
-    float zRotation;
+    float zRotation = 0;
     // Start is called before the first frame update
     void Start()
     {
