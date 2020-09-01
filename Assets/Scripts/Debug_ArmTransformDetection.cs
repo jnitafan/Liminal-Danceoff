@@ -18,7 +18,7 @@ public class Debug_ArmTransformDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LeftText.text = "LeftH(X,Y,Z,W)\nPos:" + LeftHand.position.x + "," + LeftHand.position.y + "," + LeftHand.position.z + "\nRot:\nX:" + LeftHand.rotation.x + "\nY:" + LeftHand.rotation.y + "\nZ:" + LeftHand.rotation.z + "\nW:" + LeftHand.rotation.w;
-        RightText.text = "(X,Y,Z)RightH\n" + LeftHand.position.x + "," + LeftHand.position.y + "," + LeftHand.position.z + ":Pos\n:Rot\n" + LeftHand.rotation.x + ":X\n" + LeftHand.rotation.y + ":Y\n" + LeftHand.rotation.z + ":Z\n" + LeftHand.rotation.w;
+        LeftText.text = "LeftH(X,Y,Z,W)\nRot:\nX:" + (Mathf.Round(LeftHand.rotation.x * 100)) / 100 + "\nY:" + (Mathf.Round(LeftHand.rotation.y * 100)) / 100 + "\nZ:" + (Mathf.Round(LeftHand.rotation.z * 100)) / 100 + "\nW:" + (Mathf.Round(LeftHand.rotation.w * 100)) / 100;
+        RightText.text = "(X,Y,Z)RightH\n:Rot\n" + (Mathf.Round(RightHand.rotation.x * 100)) / 100 + ":X\n" + (Mathf.Round(RightHand.rotation.y * 100)) / 100 + ":Y\n" + (Mathf.Round(RightHand.rotation.z * 100)) / 100 + ":Z\n" + (Mathf.Round(RightHand.rotation.w * 100)) / 100;
     }
 }
