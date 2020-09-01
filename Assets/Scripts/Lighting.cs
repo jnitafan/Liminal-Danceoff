@@ -14,7 +14,7 @@ public class Lighting : MonoBehaviour
 
     // Variable Declaration
     [Header("Main Components")]
-    public bool IsON = true;
+    public bool isON = true;
     private float delaySync;
     public float BPM = 60f;
     private float[] curves = { 0, 0, 0, 1 }; //create float array with 4 elements. elements shown below
@@ -108,8 +108,6 @@ public class Lighting : MonoBehaviour
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
         StartCoroutine(runPerBeat());
         StartCoroutine(runAMAP());
-
-
     }
 
     //Run perframe
@@ -128,7 +126,7 @@ public class Lighting : MonoBehaviour
     // functions that run on a coroutine (much less resource intensive than loops on the update and can be paused)
     IEnumerator runPerBeat()
     {
-        while (IsON)
+        while (isON)
         {
             for (int i = 0; i < danceTileArray.Count; i++)
             {
@@ -143,7 +141,7 @@ public class Lighting : MonoBehaviour
     // AMAP = run AS MUCH AS POSSIBLE MAXIMUM POWAR (lol its in a coroutine so its more like as much as you want, no pressure computer :) smiley face)  
     IEnumerator runAMAP()
     {
-        while (IsON)
+        while (isON)
         {
             for (int i = 0; i < danceTileArray.Count; i++)
             {
