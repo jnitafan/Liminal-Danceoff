@@ -65,6 +65,7 @@ public class Lighting : MonoBehaviour
     public Color[] lightColours = { };
 
 
+
     // Instantiate all Arrays with their respective GameObject
     void Start()
     {
@@ -119,6 +120,7 @@ public class Lighting : MonoBehaviour
         curves[2] = Mathf.InverseLerp(-1, 1, Mathf.Sign(Mathf.Sin(2f * Time.time * Mathf.PI)));
         //curves[3] = 1; //moved this line to the start(); function because its a constant.
         delaySync = Time.time % (60 / BPM);
+
 
     }
 
