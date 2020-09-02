@@ -27,6 +27,6 @@ Material:
     m_Floats:
     - _expressionNum: 1
     - _randomExpression: 1
-    - _randomExpressionSeed: 1
+    - _randomExpressionSeed: 7
     m_Colors:
     - _expressionColor: {r: 4, g: 0, b: 2.384314, a: 0}

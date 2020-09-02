@@ -9,7 +9,8 @@ public class RobotBehaviour : MonoBehaviour
     public Transform RightHand;
     [Space(10)]
     public bool isON = true;
-    public float poseChangeFrequency = 3;
+    public float poseChangeFrequency = 1f;
+    public float poseHoldTime = 1f;
     public enum robotTypeEnum : int
     {
         Primary = 0,
@@ -38,6 +39,7 @@ public class RobotBehaviour : MonoBehaviour
             case 0:
                 robotAnimationController.SetBool("poseRecognised", false);
                 robotAnimationController.SetBool("isPrimary", true);
+                StartCoroutine(copyMyPoses());
                 break;
             case 1:
                 robotAnimationController.SetBool("isDancing", true);
@@ -68,25 +70,30 @@ public class RobotBehaviour : MonoBehaviour
     IEnumerator copyMyPoses()
     {
         //ArmsCross = 0, Ballet = 1, Boogie = 2, Dab = 3, Smug = 4, Thinking = 5, Thrust = 6, TPose = 7
-        int currentPose = Random.Range(0, 7);
+        int currentPose = 0;//Random.Range(0, 7);
+        float timeTakenToPose = 0f;
 
         while (isON)
         {
             robotAnimationController.SetInteger("Pose_Type", currentPose);
-
-            /* TODO:
-            switch(currentPose)
+            switch (currentPose)
             {
                 case 0:
-                    if( my arm transforms point in a particular direction) //0 = if my arms are crossed
-                        robotAnimationController.SetBool("poseRecognised", true);
-                        yield return new WaitForSeconds(2); amount of time for robot to clap
+                    if ((LeftHand.rotation.x > -0.2 && LeftHand.rotation.x < 0) || (LeftHand.rotation.x > -0.7 && LeftHand.rotation.x < -0.3))
+                    {
+                        //i wish i could just put all of this into one function, but the yield return has to be in an IEnumerator
+                        timeTakenToPose = timeTakenToPose + Time.deltaTime;
+                        if (timeTakenToPose > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timeTakenToPose = 0;
+                        }
+                    };
                     break;
             }
-            */
-
             yield return null;
         }
     }
-
 }
