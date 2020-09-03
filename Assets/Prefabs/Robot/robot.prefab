@@ -1306,7 +1306,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 5728008de8b0f104fad0a8b20b8d68e7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1325,6 +1325,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotAnimationController: {fileID: 809743683785181658}
+  LeftHand: {fileID: 0}
+  RightHand: {fileID: 0}
+  isON: 1
+  poseChangeFrequency: 1
+  poseHoldTime: 1
+  robotType: 0
+  robotStaticType: 0
 --- !u!1 &6097569380158752693
 GameObject:
   m_ObjectHideFlags: 0

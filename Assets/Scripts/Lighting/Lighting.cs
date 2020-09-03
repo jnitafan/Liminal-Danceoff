@@ -25,7 +25,6 @@ public class Lighting : MonoBehaviour
         square,
         constant
     }
-
     [Space(10)]
     [Header("Static Light Settings")]
     public GameObject danceTiles;
@@ -143,8 +142,11 @@ public class Lighting : MonoBehaviour
     // AMAP = run AS MUCH AS POSSIBLE MAXIMUM POWAR (lol its in a coroutine so its more like as much as you want, no pressure computer :) smiley face)  
     IEnumerator runAMAP()
     {
+
+
         while (isON)
         {
+
             for (int i = 0; i < danceTileArray.Count; i++)
             {
                 // change the tile color depending on the 
