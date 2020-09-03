@@ -6,7 +6,6 @@ public class SpotlightMovement : MonoBehaviour
 {
     float xRotation;
     float yRotation;
-    float zRotation = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +19,8 @@ public class SpotlightMovement : MonoBehaviour
     }
     void RotateAroundPoint()
     {
-        xRotation = Mathf.Cos(Time.deltaTime * 10);
-        yRotation = Mathf.Sin(Time.deltaTime * 10);
-        transform.Rotate(zRotation, xRotation, yRotation, Space.World);
+        xRotation = Mathf.Cos(Time.deltaTime * 5);
+        yRotation = Mathf.Sin(Time.deltaTime * 5);
+        transform.Rotate(0, xRotation, yRotation, Space.World);
     }
 }

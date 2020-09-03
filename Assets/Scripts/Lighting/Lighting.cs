@@ -30,6 +30,7 @@ public class Lighting : MonoBehaviour
     public GameObject danceTiles;
     public curveEnum danceTileLighting;
     private List<Renderer> danceTileArray = new List<Renderer>(); //Array of gameobjects inside dancetiles
+    private List<Light> danceTileLightArray = new List<Light>();
     [Space(3)]
     public GameObject wallEmissions;
     public curveEnum wallEmissionsLighting;
@@ -76,6 +77,11 @@ public class Lighting : MonoBehaviour
             nextLightPerLightIndex.Add(0);
         }
 
+        foreach (Light tileLight in danceTiles.GetComponentsInChildren(typeof(Light)))
+        {
+            danceTileLightArray.Add(tileLight);
+        }
+
         foreach (Renderer tileRenderer in wallEmissions.GetComponentsInChildren(typeof(Renderer)))
         {
             wallEmissionsArray.Add(tileRenderer);
@@ -119,8 +125,6 @@ public class Lighting : MonoBehaviour
         curves[2] = Mathf.InverseLerp(-1, 1, Mathf.Sign(Mathf.Sin(2f * Time.time * Mathf.PI)));
         //curves[3] = 1; //moved this line to the start(); function because its a constant.
         delaySync = Time.time % (60 / BPM);
-
-
     }
 
     // Simple twoliner that randomizes each single light color depending on what lights there are.
@@ -146,6 +150,11 @@ public class Lighting : MonoBehaviour
 
         while (isON)
         {
+
+            // yes, i know. hard coded values. ill rework this entire area later if i have got the time
+            danceTileLightArray[0].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)danceTileLighting]);
+            danceTileLightArray[1].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[16]], curves[(int)danceTileLighting]);
+            danceTileLightArray[2].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[13]], curves[(int)danceTileLighting]);
 
             for (int i = 0; i < danceTileArray.Count; i++)
             {
