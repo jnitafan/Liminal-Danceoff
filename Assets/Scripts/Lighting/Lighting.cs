@@ -152,6 +152,8 @@ public class Lighting : MonoBehaviour
         {
 
             // yes, i know. hard coded values. ill rework this entire area later if i have got the time
+
+            // TODO: rewrite this section with material property blocks
             danceTileLightArray[0].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)danceTileLighting]);
             danceTileLightArray[1].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[16]], curves[(int)danceTileLighting]);
             danceTileLightArray[2].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[13]], curves[(int)danceTileLighting]);
