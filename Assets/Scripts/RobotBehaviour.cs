@@ -89,7 +89,7 @@ public class RobotBehaviour : MonoBehaviour
     IEnumerator copyMyPoses()
     {
         //ArmsCross = 0, Ballet = 1, Boogie = 2, Dab = 3, Smug = 4, Thinking = 5, Thrust = 6, TPose = 7
-        int currentPose = 0;//Random.Range(0, 7);
+        int currentPose = 7;//Random.Range(0, 7);
         float timePosedCounter = 0f;
 
         while (isON)
@@ -100,7 +100,7 @@ public class RobotBehaviour : MonoBehaviour
 
             switch (currentPose)
             {
-                case 0:
+                case 7:
 
                     positionPointers(0, 1f, 0, 0, 0, 0);
 
@@ -130,15 +130,15 @@ public class RobotBehaviour : MonoBehaviour
         //move the pose pointers 1m perpendicularly to the head's position
         rightPointer.position = new Vector3
         (
-            playerHead.position.x - Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) + xRightOffset,
+            playerHead.position.x - Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + xRightOffset,
             playerHead.position.y + yRightOffset,
-            playerHead.position.z - Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) + zRightOffset
+            playerHead.position.z - Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + zRightOffset
         );
         leftPointer.transform.position = new Vector3
         (
-            playerHead.position.x + Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) + xLeftOffset,
+            playerHead.position.x + Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + xLeftOffset,
             playerHead.position.y + yLeftOffset,
-            playerHead.position.z + Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) + zLeftOffset
+            playerHead.position.z + Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + zLeftOffset
         );
     }
 }

@@ -13,15 +13,11 @@ public class PoseIndicator : MonoBehaviour
     void Start()
     {
         Renderer = GetComponent<Renderer>();
-
-        StartCoroutine(poseDetection());
     }
 
-    IEnumerator poseDetection()
+    void Update()
     {
-        angle = Mathf.InverseLerp(0, 180, -Vector3.Angle(Pointer.position - Hand.position, Hand.transform.forward));
+        angle = 1 - Mathf.InverseLerp(0, 180, Vector3.Angle(Pointer.position - Hand.position, Hand.transform.forward));
         Renderer.material.SetFloat("_percentage", angle);
-        //PoseIndicator.renderer.material.SetColor("Blue",new Color(0,0,0,0));
-        yield return null;
     }
 }

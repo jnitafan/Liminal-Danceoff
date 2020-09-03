@@ -4553,6 +4553,11 @@ PrefabInstance:
       propertyPath: rightPointer
       value: 
       objectReference: {fileID: 382046620}
+    - target: {fileID: 8914216970155473280, guid: 13a43c5e74cbf2f45a3424a709f0b004,
+        type: 3}
+      propertyPath: poseAngleTolerance
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 164303704340122948, guid: 13a43c5e74cbf2f45a3424a709f0b004,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
