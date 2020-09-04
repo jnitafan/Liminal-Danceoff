@@ -56,3 +56,6 @@ After get all requirements ready, now you can clone install the project on your 
 ## Troubleshooting
 - Unable to open Unity due to Package Manager Manifest issues
   - Chances are your git is not setup properly.
+
+## Notes
+- There are two prefabs which rely on a default layer to not reflect lighting as the lights in the scene has been set to cull layer 1:TransparentFX (Tile & Smoke Particles), you might need to change these to the layers you have already established for the limapp to work properly.
