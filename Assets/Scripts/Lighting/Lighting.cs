@@ -30,6 +30,8 @@ public class Lighting : MonoBehaviour
     public GameObject danceTiles;
     public curveEnum danceTileLighting;
     private List<Renderer> danceTileArray = new List<Renderer>(); //Array of gameobjects inside dancetiles
+    //unused materialpropertyblock instantiation
+    //private MaterialPropertyBlock tilePropBlock;
     private List<Light> danceTileLightArray = new List<Light>();
     [Space(3)]
     public GameObject wallEmissions;
@@ -69,6 +71,9 @@ public class Lighting : MonoBehaviour
     // Instantiate all Arrays with their respective GameObject
     void Start()
     {
+
+
+
         // Count the number of children inside the object DanceTiles, and iterate through them
         foreach (Renderer tileRenderer in danceTiles.GetComponentsInChildren(typeof(Renderer)))
         {
@@ -76,6 +81,12 @@ public class Lighting : MonoBehaviour
             danceTileArray.Add(tileRenderer);
             nextLightPerLightIndex.Add(0);
         }
+
+        // Unused materialpropertyblock lines
+        // tilePropBlock = new MaterialPropertyBlock();
+        // danceTileArray[0].GetPropertyBlock(tilePropBlock);
+        // tilePropBlock.Clear();
+
 
         foreach (Light tileLight in danceTiles.GetComponentsInChildren(typeof(Light)))
         {
@@ -160,6 +171,11 @@ public class Lighting : MonoBehaviour
 
             for (int i = 0; i < danceTileArray.Count; i++)
             {
+
+                // since LWRP doesnt really like materialpropertyblocks, since it already conflicts with the LWRP SRP Batching protocols.
+                //tilePropBlock.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)danceTileLighting]));
+                //danceTileArray[i].SetPropertyBlock(tilePropBlock);
+
                 // change the tile color depending on the 
                 danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)danceTileLighting]));
 
