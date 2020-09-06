@@ -70,7 +70,7 @@ public class RobotBehaviour : MonoBehaviour
                 robotAnimationController.SetInteger("Static_Type", (int)robotStaticType);
                 robotFaceRenderer.material.SetFloat("_expressionNumber", Random.Range(1, 62));
                 robotAnimationController.SetBool("isStationary", true);
-                //StartCoroutine(randomFace());
+                StartCoroutine(randomStatic());
                 break;
         }
 
@@ -85,6 +85,16 @@ public class RobotBehaviour : MonoBehaviour
             yield return new WaitForSeconds(poseChangeFrequency * 3);
         }
     }
+
+    IEnumerator randomStatic()
+    {
+        while (isON)
+        {
+            robotFaceRenderer.material.SetFloat("_expressionNumber", Random.Range(1, 62));
+            yield return new WaitForSeconds(poseChangeFrequency * 3);
+        }
+    }
+
 
     IEnumerator copyMyPoses()
     {

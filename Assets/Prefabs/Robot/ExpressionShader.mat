@@ -28,6 +28,7 @@ Material:
     - Boolean_6B83AEE4: 1
     - _expressionNum: 3
     - _expressionNumber: 1
+    - _expressionSeed: 0
     - _randomExpression: 1
     - _randomExpressionSeed: 1
     m_Colors:
