@@ -19,8 +19,8 @@ public class SpotlightMovement : MonoBehaviour
     }
     void RotateAroundPoint()
     {
-        xRotation = Mathf.Cos(Time.deltaTime * 5);
-        yRotation = Mathf.Sin(Time.deltaTime * 5);
+        xRotation = Mathf.Cos(Time.deltaTime * 5) / 2.75f;
+        yRotation = Mathf.Sin(Time.deltaTime * 5) / 2.75f;
         transform.Rotate(0, xRotation, yRotation, Space.World);
     }
 }
