@@ -131,7 +131,7 @@ public class Lighting : MonoBehaviour
     void Update()
     {
         // Lerp the BPM into a percentage, setting the value to 1 every beat, and decreasing as a percentage of time until the next beat will happen
-        curves[0] = Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI));
+        curves[0] = Mathf.Lerp(0.2f, 1, Mathf.InverseLerp(-1, 1, Mathf.Cos(((Time.time * Mathf.PI) * (BPM / 60f)) % Mathf.PI)));
         curves[1] = Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time * (BPM / 60f)));
         curves[2] = Mathf.InverseLerp(-1, 1, Mathf.Sign(Mathf.Sin(2f * Time.time * Mathf.PI)));
         //curves[3] = 1; //moved this line to the start(); function because its a constant.
@@ -157,8 +157,6 @@ public class Lighting : MonoBehaviour
     // AMAP = run AS MUCH AS POSSIBLE MAXIMUM POWAR (lol its in a coroutine so its more like as much as you want, no pressure computer :) smiley face)  
     IEnumerator runAMAP()
     {
-
-
         while (isON)
         {
 
