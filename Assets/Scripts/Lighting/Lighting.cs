@@ -43,8 +43,10 @@ public class Lighting : MonoBehaviour
     private List<Renderer> FluroscentLightbulbs = new List<Renderer>();
     [Space(3)]
     public Transform lightBoxes;
+    public Material spotlightVolumetricMaterial;
     public curveEnum lightBoxesLighting;
     private List<Light> spotLights = new List<Light>();
+    private List<Renderer> spotlightVolumetric = new List<Renderer>();
     [Space(3)]
     public Transform laserMachines;
     public curveEnum laserMachineLighting;
@@ -72,7 +74,7 @@ public class Lighting : MonoBehaviour
     void Start()
     {
 
-
+        //this memory stuff is only run once, so YOLO
 
         // Count the number of children inside the object DanceTiles, and iterate through them
         foreach (Renderer tileRenderer in danceTiles.GetComponentsInChildren(typeof(Renderer)))
@@ -97,10 +99,20 @@ public class Lighting : MonoBehaviour
         {
             wallEmissionsArray.Add(tileRenderer);
         }
+
         //add all the lightbulbs in the array
         foreach (Light Lightbulb in lightBoxes.GetComponentsInChildren(typeof(Light)))
         {
             spotLights.Add(Lightbulb);
+        }
+
+        foreach (Renderer renderer in lightBoxes.GetComponentsInChildren(typeof(Renderer)))
+        {
+            if (renderer.sharedMaterial == spotlightVolumetricMaterial)
+            {
+                spotlightVolumetric.Add(renderer);
+            }
+
         }
 
         //add all the lazerbeam components
@@ -182,9 +194,11 @@ public class Lighting : MonoBehaviour
                 {
                     FluroscentLightbulbs[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)longLightLighting]));
 
+
                     if (i < spotLights.Count)
                     {
                         spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
+                        spotlightVolumetric[i].material.SetColor("_Color", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]));
 
                         if (i < wallEmissionsArray.Count)
                         {
