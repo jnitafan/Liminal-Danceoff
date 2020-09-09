@@ -27,6 +27,11 @@ public class Lighting : MonoBehaviour
     }
     [Space(10)]
     [Header("Static Light Settings")]
+    private List<Renderer> glowObjects = new List<Renderer>();
+    public Material glowMaterial;
+    public Material tileMaterial;
+    public Material emissionMaterial;
+    [Space(4)]
     public GameObject danceTiles;
     public curveEnum danceTileLighting;
     private List<Renderer> danceTileArray = new List<Renderer>(); //Array of gameobjects inside dancetiles
@@ -79,9 +84,12 @@ public class Lighting : MonoBehaviour
         // Count the number of children inside the object DanceTiles, and iterate through them
         foreach (Renderer tileRenderer in danceTiles.GetComponentsInChildren(typeof(Renderer)))
         {
+            if (tileRenderer.sharedMaterial == tileMaterial)
+            {
+                danceTileArray.Add(tileRenderer);
+                nextLightPerLightIndex.Add(0);
+            }
             //Assign each dance tile renderer (the component responsible for color) in the array, and fill tilearray memory with default colours
-            danceTileArray.Add(tileRenderer);
-            nextLightPerLightIndex.Add(0);
         }
 
         // Unused materialpropertyblock lines
@@ -89,6 +97,13 @@ public class Lighting : MonoBehaviour
         // danceTileArray[0].GetPropertyBlock(tilePropBlock);
         // tilePropBlock.Clear();
 
+        foreach (Renderer glow in danceTiles.GetComponentsInChildren(typeof(Renderer)))
+        {
+            if (glow.sharedMaterial == glowMaterial)
+            {
+                glowObjects.Add(glow);
+            }
+        }
 
         foreach (Light tileLight in danceTiles.GetComponentsInChildren(typeof(Light)))
         {
@@ -121,16 +136,16 @@ public class Lighting : MonoBehaviour
             Lazers.Add(lazer);
         }
 
-        //This code is quite a bit messy, but it only runs once so YOLO lmao
-        foreach (Transform LongLight in longLights)
+        foreach (Renderer renderer in longLights.GetComponentsInChildren(typeof(Renderer)))
         {
-            //Get the child of the child inside the LongLEDs -> LongLight Prefab
-            foreach (Transform FluroscentLightbulb in LongLight)
+            if (renderer.sharedMaterial == glowMaterial)
             {
-                foreach (Renderer MeshRenderer in FluroscentLightbulb.GetComponentsInChildren(typeof(Renderer)))
-                {
-                    FluroscentLightbulbs.Add(MeshRenderer);
-                }
+                glowObjects.Add(renderer);
+            }
+
+            if (renderer.sharedMaterial == emissionMaterial)
+            {
+                FluroscentLightbulbs.Add(renderer);
             }
         }
 
@@ -189,11 +204,13 @@ public class Lighting : MonoBehaviour
                 // change the tile color depending on the 
                 danceTileArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)danceTileLighting]));
 
+                glowObjects[i].material.SetColor("_ColorCore", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)danceTileLighting]));
+
                 //yeah i am not running two for loops in a timeperiod of a frame/millisecond, if checks are way more optimal
                 if (i < FluroscentLightbulbs.Count)
                 {
                     FluroscentLightbulbs[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)longLightLighting]));
-
+                    glowObjects[i + danceTileArray.Count].material.SetColor("_ColorCore", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)longLightLighting]));
 
                     if (i < spotLights.Count)
                     {
