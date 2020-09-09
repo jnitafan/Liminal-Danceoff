@@ -21,6 +21,6 @@ public class SpotlightMovement : MonoBehaviour
     {
         xRotation = Mathf.Cos(Time.deltaTime * 5);
         yRotation = Mathf.Sin(Time.deltaTime * 5);
-        transform.Rotate(0, xRotation, yRotation, Space.World);
+        transform.Rotate(0, xRotation, yRotation, Space.Self);
     }
 }
