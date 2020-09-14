@@ -14,7 +14,8 @@ public class Lighting : MonoBehaviour
 
     // Variable Declaration
     [Header("Main Components")]
-    public bool isON = true;
+    public bool isON = false;
+    private bool runOnce = false;
     private float delaySync;
     public float BPM = 60f;
     private float[] curves = { 0, 0, 0, 1 }; //create float array with 4 elements. elements shown below
@@ -151,8 +152,7 @@ public class Lighting : MonoBehaviour
         }
 
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
-        StartCoroutine(runPerBeat());
-        StartCoroutine(runAMAP());
+
     }
 
     //Run perframe
@@ -164,6 +164,13 @@ public class Lighting : MonoBehaviour
         curves[2] = Mathf.InverseLerp(-1, 1, Mathf.Sign(Mathf.Sin(2f * Time.time * Mathf.PI)));
         //curves[3] = 1; //moved this line to the start(); function because its a constant.
         delaySync = Time.time % (60 / BPM);
+
+        if (isON && !runOnce)
+        {
+            runOnce = true;
+            StartCoroutine(runPerBeat());
+            StartCoroutine(runAMAP());
+        }
     }
 
     // Simple twoliner that randomizes each single light color depending on what lights there are.

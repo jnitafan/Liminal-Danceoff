@@ -1389,7 +1389,8 @@ MonoBehaviour:
   playerRightHand: {fileID: 0}
   leftPointer: {fileID: 0}
   rightPointer: {fileID: 0}
-  isON: 1
+  LightManager: {fileID: 0}
+  isON: 0
   poseChangeFrequency: 1
   poseHoldTime: 1
   poseAngleTolerance: 30

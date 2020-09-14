@@ -10,9 +10,13 @@ public class RobotBehaviour : MonoBehaviour
     public Transform playerRightHand;
     public Transform leftPointer;
     public Transform rightPointer;
+    public GameObject LightManager;
+    private Lighting LightManagerScript;
     private Renderer robotFaceRenderer;
     [Space(10)]
-    public bool isON = true;
+    [SerializeField]
+    private bool isON = false;
+    private bool runOnce = false;
     public float poseChangeFrequency = 1f;
     public float poseHoldTime = 1f;
     public float poseAngleTolerance = 30f;
@@ -37,41 +41,58 @@ public class RobotBehaviour : MonoBehaviour
 
     void Start()
     {
-        robotAnimationController.SetBool("isON", true);
-
+        LightManagerScript = LightManager.GetComponent<Lighting>();
         //get the face renderer
         robotFaceRenderer = this.transform.GetChild(1).GetComponent<Renderer>();
 
-        switch ((int)robotType)
+        robotAnimationController = this.GetComponent<Animator>();
+
+        robotFaceRenderer.material.SetFloat("_expressionNumber", 0);
+
+
+    }
+
+    void Update()
+    {
+        isON = LightManagerScript.isON;
+
+        if (isON && !runOnce)
         {
-            case 0:
-                //if the robot is set as the primary robot
-                //preset the variables
-                robotAnimationController.SetBool("poseRecognised", false);
-                robotAnimationController.SetBool("isPrimary", true);
-                robotFaceRenderer.material.SetFloat("_randomExpression", 0);
+            runOnce = true;
 
-                //set the pose pointing positions to the default values
-                leftPointer.position = playerHead.position;
-                rightPointer.position = playerHead.position;
+            robotAnimationController.SetBool("isON", true);
 
-                //start doing poses
-                StartCoroutine(copyMyPoses());
-                break;
-            case 1:
-                //if the robot is set to dance mode
-                robotAnimationController.SetBool("isDancing", true);
-                //start doing some random dances
-                StartCoroutine(randomDance());
-                //StartCoroutine(randomFace());
-                break;
-            case 2:
-                //if the robot is set to a static position
-                robotAnimationController.SetInteger("Static_Type", (int)robotStaticType);
-                robotFaceRenderer.material.SetFloat("_expressionNumber", Random.Range(1, 62));
-                robotAnimationController.SetBool("isStationary", true);
-                StartCoroutine(randomStatic());
-                break;
+            switch ((int)robotType)
+            {
+                case 0:
+                    //if the robot is set as the primary robot
+                    //preset the variables
+                    robotAnimationController.SetBool("poseRecognised", false);
+                    robotAnimationController.SetBool("isPrimary", true);
+                    robotFaceRenderer.material.SetFloat("_randomExpression", 0);
+
+                    //set the pose pointing positions to the default values
+                    leftPointer.position = playerHead.position;
+                    rightPointer.position = playerHead.position;
+
+                    //start doing poses
+                    StartCoroutine(copyMyPoses());
+                    break;
+                case 1:
+                    //if the robot is set to dance mode
+                    robotAnimationController.SetBool("isDancing", true);
+                    //start doing some random dances
+                    StartCoroutine(randomDance());
+                    //StartCoroutine(randomFace());
+                    break;
+                case 2:
+                    //if the robot is set to a static position
+                    robotAnimationController.SetInteger("Static_Type", (int)robotStaticType);
+                    robotFaceRenderer.material.SetFloat("_expressionNumber", Random.Range(1, 62));
+                    robotAnimationController.SetBool("isStationary", true);
+                    StartCoroutine(randomStatic());
+                    break;
+            }
         }
 
     }
@@ -112,7 +133,7 @@ public class RobotBehaviour : MonoBehaviour
             {
                 case 7:
 
-                    positionPointers(0, 1f, 0, 0, 0, 0);
+                    positionPointers(0, 0, 0, 0, 0, 0);
 
                     if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
                     {
