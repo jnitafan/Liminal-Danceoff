@@ -72,6 +72,7 @@ public class Lighting : MonoBehaviour
     [Header("Colours")]
     [ColorUsage(true, true)]
     public Color[] lightColours = { };
+    public Color[] volumetriclightColours = { };
 
 
 
@@ -214,8 +215,8 @@ public class Lighting : MonoBehaviour
 
                     if (i < spotLights.Count)
                     {
-                        spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
-                        spotlightVolumetric[i].material.SetColor("_Color", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]));
+                        spotLights[i].color = Color.Lerp(Color.black, volumetriclightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
+                        spotlightVolumetric[i].material.SetColor("_Color", Color.Lerp(BaseColor, volumetriclightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]));
 
                         if (i < wallEmissionsArray.Count)
                         {
