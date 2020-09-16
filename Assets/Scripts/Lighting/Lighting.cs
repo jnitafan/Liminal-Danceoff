@@ -17,7 +17,7 @@ public class Lighting : MonoBehaviour
     public bool isON = false;
     private bool runOnce = false;
     private float delaySync;
-    public float BPM = 60f;
+    public float BPM = 60f; // this is a comment showing that this is a BPM
     private float[] curves = { 0, 0, 0, 1 }; //create float array with 4 elements. elements shown below
     public enum curveEnum : int
     {
