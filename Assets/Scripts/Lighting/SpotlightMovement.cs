@@ -15,7 +15,7 @@ public class SpotlightMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateAroundPoint();
+            RotateAroundPoint();
     }
     void RotateAroundPoint()
     {

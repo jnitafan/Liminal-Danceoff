@@ -224,6 +224,10 @@ public class Lighting : MonoBehaviour
                     {
                         spotLights[i].color = Color.Lerp(Color.black, volumetriclightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
                         spotlightVolumetric[i].material.SetColor("_Color", Color.Lerp(BaseColor, volumetriclightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]));
+                        if (i == 10)
+                        {
+                            spotlightVolumetric[10].material.color = Color.white;
+                        }
 
                         if (i < wallEmissionsArray.Count)
                         {
