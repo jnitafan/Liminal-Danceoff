@@ -131,7 +131,7 @@ public class Lighting : MonoBehaviour
             }
 
         }
-
+        //false comment
         //add all the lazerbeam components
         foreach (LineRenderer lazer in laserMachines.GetComponentsInChildren(typeof(LineRenderer)))
         {
