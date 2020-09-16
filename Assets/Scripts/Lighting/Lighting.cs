@@ -227,6 +227,7 @@ public class Lighting : MonoBehaviour
                         if (i == 10)
                         {
                             spotlightVolumetric[10].material.color = Color.white;
+                            spotLights[10].color = Color.white;
                         }
 
                         if (i < wallEmissionsArray.Count)
