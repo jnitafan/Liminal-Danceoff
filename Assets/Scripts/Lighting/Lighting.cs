@@ -62,8 +62,10 @@ public class Lighting : MonoBehaviour
     public MeshRenderer LiminalSign;
     public curveEnum LiminalSignLighting;
     [Space(3)]
-    public MeshRenderer CeilingLights;
+    public SkinnedMeshRenderer CeilingLight1;
+    public SkinnedMeshRenderer CeilingLight2;
     public curveEnum CeilingLightsLighting;
+
     [Space(3)]
     public GameObject WallGlows;
     public curveEnum wallglowLighting;
@@ -257,8 +259,9 @@ public class Lighting : MonoBehaviour
 
             LiminalSign.material.SetColor("_EmissionColor", Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[2]], curves[(int)LiminalSignLighting]));
             glowObjects[glowObjects.Count - 1].material.SetColor("_ColorCore", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[2]], curves[(int)LiminalSignLighting]));
-            CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], curves[(int)CeilingLightsLighting]));
-            CeilingLights.materials[1].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)CeilingLightsLighting]));
+
+            CeilingLight1.material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], curves[(int)CeilingLightsLighting]));
+            CeilingLight2.material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)CeilingLightsLighting]));
 
             yield return new WaitForSecondsRealtime(0 - delaySync);
         }
