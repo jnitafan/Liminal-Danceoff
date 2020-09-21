@@ -33,6 +33,7 @@ public class Lighting : MonoBehaviour
     public Material tileMaterial;
     public Material emissionMaterial;
     [Space(4)]
+    [Header("GameObjects")]
     public GameObject danceTiles;
     public curveEnum danceTileLighting;
     private List<Renderer> danceTileArray = new List<Renderer>(); //Array of gameobjects inside dancetiles
@@ -64,15 +65,17 @@ public class Lighting : MonoBehaviour
     public MeshRenderer CeilingLights;
     public curveEnum CeilingLightsLighting;
     [Space(3)]
+    public GameObject WallGlows;
+    public curveEnum wallglowLighting;
+    [Space(3)]
     private List<int> nextLightPerLightIndex = new List<int>(); //keep in memory the next color chosen for each single light
-    [Space(5)]
-    [ColorUsage(true, true)]
-    public Color BaseColor;
 
     [Space(10)]
     [Header("Colours")]
     [ColorUsage(true, true)]
     public Color[] lightColours = { };
+    [ColorUsage(true, true)]
+    public Color BaseColor;
 
 
     // Instantiate all Arrays with their respective GameObject
@@ -147,6 +150,11 @@ public class Lighting : MonoBehaviour
             {
                 FluroscentLightbulbs.Add(renderer);
             }
+        }
+
+        foreach (Renderer glow in WallGlows.GetComponentsInChildren(typeof(Renderer)))
+        {
+            glowObjects.Add(glow);
         }
 
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
@@ -231,6 +239,11 @@ public class Lighting : MonoBehaviour
                         if (i < wallEmissionsArray.Count)
                         {
                             wallEmissionsArray[i].material.SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[4]], curves[(int)wallEmissionsLighting]));
+
+                            if (i < 2) //hardcoded wall glow count :)
+                            {
+                                glowObjects[i + danceTileArray.Count + FluroscentLightbulbs.Count].material.SetColor("_ColorCore", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)wallglowLighting]));
+                            }
                         }
                     }
 
@@ -243,6 +256,7 @@ public class Lighting : MonoBehaviour
             }
 
             LiminalSign.material.SetColor("_EmissionColor", Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[2]], curves[(int)LiminalSignLighting]));
+            glowObjects[glowObjects.Count - 1].material.SetColor("_ColorCore", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[2]], curves[(int)LiminalSignLighting]));
             CeilingLights.materials[0].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[0]], curves[(int)CeilingLightsLighting]));
             CeilingLights.materials[1].SetColor("_EmissionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)CeilingLightsLighting]));
 
