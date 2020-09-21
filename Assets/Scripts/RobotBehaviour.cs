@@ -120,7 +120,7 @@ public class RobotBehaviour : MonoBehaviour
     IEnumerator copyMyPoses()
     {
         //ArmsCross = 0, Ballet = 1, Boogie = 2, Dab = 3, Smug = 4, Thinking = 5, Thrust = 6, TPose = 7
-        int currentPose = 7;//Random.Range(0, 7);
+        int currentPose = Random.Range(0, 7); //Random.Range(0, 7);
         float timePosedCounter = 0f;
 
         while (isON)
@@ -131,9 +131,135 @@ public class RobotBehaviour : MonoBehaviour
 
             switch (currentPose)
             {
+                case 0:
+
+                    positionPointers(0, 0, 180, 180);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
+                case 1:
+
+                    positionPointers(-1, 1, -15, -15);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
+                case 2:
+
+                    positionPointers(1.5f, -1, 35, 55);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
+                case 3:
+
+                    positionPointers(0.5f, 0, 0, 180);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
+                case 4:
+
+                    positionPointers(0, 0, 180, -135);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
+                case 5:
+
+                    positionPointers(0, -100, 180, 0);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
+                case 6:
+
+                    positionPointers(0, 0, -85, 85);
+
+                    if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
+                    {
+                        timePosedCounter = timePosedCounter + Time.deltaTime;
+                        if (timePosedCounter > poseHoldTime)
+                        {
+                            robotAnimationController.SetBool("poseRecognised", true);
+                            robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            yield return new WaitForSeconds(1.5f);
+                            robotAnimationController.SetBool("poseRecognised", false);
+                            timePosedCounter = 0;
+                        }
+                    }
+                    break;
+
                 case 7:
 
-                    positionPointers(0, 0, 0, 0, 0, 0);
+                    positionPointers(0, 0, 0, 0);
 
                     if (Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) < poseAngleTolerance && Vector3.Angle(rightPointer.position - playerRightHand.position, playerRightHand.transform.forward) < poseAngleTolerance)
                     {
@@ -155,21 +281,23 @@ public class RobotBehaviour : MonoBehaviour
             yield return null;
         }
     }
-
-    void positionPointers(float xRightOffset, float yRightOffset, float zRightOffset, float xLeftOffset, float yLeftOffset, float zLeftOffset)
+    // height offset = arm up and down in meters, angle offset = change in angle in degrees °
+    void positionPointers(float leftHandHeightOffset, float rightHandHeightOffset, float leftHandAngleOffset, float rightHandAngleOffset)
     {
-        //move the pose pointers 1m perpendicularly to the head's position
         rightPointer.position = new Vector3
         (
-            playerHead.position.x - Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + xRightOffset,
-            playerHead.position.y + yRightOffset,
-            playerHead.position.z - Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + zRightOffset
+            (playerHead.position.x + Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y + 90 + rightHandAngleOffset)) * 3),
+            (playerHead.position.y + rightHandHeightOffset),
+            (playerHead.position.z + Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y + 90 + rightHandAngleOffset)) * 3)
         );
         leftPointer.transform.position = new Vector3
         (
-            playerHead.position.x + Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + xLeftOffset,
-            playerHead.position.y + yLeftOffset,
-            playerHead.position.z + Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90)) * 10 + zLeftOffset
+            (playerHead.position.x + Mathf.Sin(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90 + leftHandAngleOffset)) * 3),
+            (playerHead.position.y + leftHandHeightOffset),
+            (playerHead.position.z + Mathf.Cos(Mathf.Deg2Rad * (playerHead.localEulerAngles.y - 90 + leftHandAngleOffset)) * 3)
         );
+
+        //move the pose pointers 1m perpendicularly to the head's position
+
     }
 }
