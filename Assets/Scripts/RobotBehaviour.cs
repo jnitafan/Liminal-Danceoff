@@ -20,6 +20,9 @@ public class RobotBehaviour : MonoBehaviour
     public float poseChangeFrequency = 1f;
     public float poseHoldTime = 1f;
     public float poseAngleTolerance = 30f;
+    public float PosesCompleted = 0f;
+    public float PosesForGlow = 10f;
+    public GameObject[] Glowsticks;
     public enum robotTypeEnum : int
     {
         Primary = 0,
@@ -163,6 +166,7 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -181,6 +185,7 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -199,6 +204,7 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -217,6 +223,7 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -235,6 +242,7 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -253,6 +261,7 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -271,10 +280,21 @@ public class RobotBehaviour : MonoBehaviour
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
             }
+
+            if(PosesCompleted > PosesForGlow)
+            {
+               
+                Glowsticks[0].SetActive(false);
+                Glowsticks[1].SetActive(false);
+                Glowsticks[2].SetActive(false);
+                Glowsticks[3].SetActive(false);
+            }
+
 
             //Debug.Log(Vector3.Angle(leftPointer.position - playerLeftHand.position, playerLeftHand.transform.forward) + " " + timePosedCounter);
             //Debug.Log(Mathf.Sin(Mathf.Rad2Deg * ((playerHead.localEulerAngles.y % 90) - 90)));
