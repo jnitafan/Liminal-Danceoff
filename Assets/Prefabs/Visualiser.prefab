@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3736364b5b6a524195002b35fa59e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bias: 1
+  bias: 1.5
   timeStep: 0.15
   timeToBeat: 0.05
   restSmoothTime: 2

@@ -74,8 +74,15 @@ public class Lighting : MonoBehaviour
 
     [Space(10)]
     [Header("Colours")]
+    public Color Color0;
+    public Color Color1;
+    public Color Color2;
+    public Color Color3;
+    public Color Color4;
+    public Color Color5;
+
     [ColorUsage(true, true)]
-    public Color[] lightColours = { };
+    private Color[] lightColours = new Color[6];
     [ColorUsage(true, true)]
     public Color BaseColor;
 
@@ -171,7 +178,15 @@ public class Lighting : MonoBehaviour
         curves[1] = Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time * (BPM / 60f)));
         curves[2] = Mathf.InverseLerp(-1, 1, Mathf.Sign(Mathf.Sin(2f * Time.time * Mathf.PI)));
         //curves[3] = 1; //moved this line to the start(); function because its a constant.
+
         delaySync = Time.time % (60 / BPM);
+
+        lightColours[0] = Color0;
+        lightColours[1] = Color1;
+        lightColours[2] = Color2;
+        lightColours[3] = Color3;
+        lightColours[4] = Color4;
+        lightColours[5] = Color5;
 
         if (isON && !runOnce)
         {
@@ -191,7 +206,8 @@ public class Lighting : MonoBehaviour
             {
                 nextLightPerLightIndex[i] = Random.Range(0, lightColours.Length);
             }
-            // There is a bug here, the coroutine is not synced with the time.time function, if the application lags out then this will be desynced. (fix iteration 2 mabye.)
+            // There is a bug here, the coroutine is not synced with the time.time function, if the application lags out then this will be desynced. (fix iteration 2 mabye.) EDIT: THIS HAS BEEN FIXED
+
             yield return new WaitForSecondsRealtime((60f / BPM) - delaySync);
         }
         yield return null;
@@ -232,11 +248,13 @@ public class Lighting : MonoBehaviour
                     {
                         spotLights[i].color = Color.Lerp(Color.black, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]);
                         spotlightVolumetric[i].material.SetColor("_Color", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[(int)lightBoxesLighting]));
-                        if (i == 10)
-                        {
-                            spotlightVolumetric[10].material.color = Color.white;
-                            spotLights[10].color = Color.white;
-                        }
+
+                        // for now, im testing with the new timeline stuff
+                        // if (i == 10)
+                        // {
+                        //     spotlightVolumetric[10].material.color = Color.white;
+                        //     spotLights[10].color = Color.white;
+                        // }
 
                         if (i < wallEmissionsArray.Count)
                         {
