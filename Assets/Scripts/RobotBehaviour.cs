@@ -23,6 +23,7 @@ public class RobotBehaviour : MonoBehaviour
     public float PosesCompleted = 0f;
     public float PosesForGlow = 10f;
     public GameObject[] Glowsticks;
+    public GameObject HeartsParticleSystem;
     public enum robotTypeEnum : int
     {
         Primary = 0,
@@ -152,6 +153,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -173,6 +175,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -194,6 +197,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -215,6 +219,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -236,6 +241,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -257,6 +263,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -278,6 +285,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
@@ -299,6 +307,7 @@ public class RobotBehaviour : MonoBehaviour
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                         }
                     }
                     break;
