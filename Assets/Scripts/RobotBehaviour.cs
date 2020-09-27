@@ -134,6 +134,7 @@ public class RobotBehaviour : MonoBehaviour
 
             switch (currentPose)
             {
+                //I would love to put this inside a function, but i dont know how to pass coroutine return info lol
                 case 0:
 
                     positionPointers(0, 0, 180, 180);
@@ -147,7 +148,10 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
+                            PosesCompleted++;
                         }
                     }
                     break;
@@ -165,6 +169,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -184,6 +190,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -203,6 +211,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -222,6 +232,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -241,6 +253,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -260,6 +274,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -279,6 +295,8 @@ public class RobotBehaviour : MonoBehaviour
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
+                            currentPose = Random.Range(0, 7);
+                            robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
                         }
@@ -286,13 +304,13 @@ public class RobotBehaviour : MonoBehaviour
                     break;
             }
 
-            if(PosesCompleted > PosesForGlow)
+            if (PosesCompleted > PosesForGlow)
             {
-               
-                Glowsticks[0].SetActive(false);
-                Glowsticks[1].SetActive(false);
-                Glowsticks[2].SetActive(false);
-                Glowsticks[3].SetActive(false);
+
+                Glowsticks[0].SetActive(true);
+                Glowsticks[1].SetActive(true);
+                Glowsticks[2].SetActive(true);
+                Glowsticks[3].SetActive(true);
             }
 
 

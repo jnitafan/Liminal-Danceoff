@@ -26646,7 +26646,7 @@ Transform:
   - {fileID: 984928871}
   - {fileID: 1745087307}
   m_Father: {fileID: 1434807636}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1308449233
 GameObject:
@@ -44301,7 +44301,7 @@ Transform:
   m_LocalScale: {x: 163.49916, y: 163.5926, z: 160.39925}
   m_Children: []
   m_Father: {fileID: 1434807636}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 168.391, y: -93.074005, z: -107.678986}
 --- !u!23 &1612087694
 MeshRenderer:
