@@ -147,13 +147,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -169,13 +170,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -191,13 +193,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -213,13 +216,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -235,13 +239,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -257,13 +262,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -279,13 +285,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
@@ -301,13 +308,14 @@ public class RobotBehaviour : MonoBehaviour
                         {
                             robotAnimationController.SetBool("poseRecognised", true);
                             robotFaceRenderer.material.SetFloat("_expressionNumber", 2);
+                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
                             yield return new WaitForSeconds(1.5f);
                             robotAnimationController.SetBool("poseRecognised", false);
                             currentPose = Random.Range(0, 7);
                             robotAnimationController.SetInteger("Pose_Type", currentPose);
                             timePosedCounter = 0;
                             PosesCompleted++;
-                            HeartsParticleSystem.GetComponent<ParticleSystem>().Play();
+                            
                         }
                     }
                     break;
