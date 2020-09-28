@@ -70,6 +70,10 @@ public class Lighting : MonoBehaviour
     public GameObject WallGlows;
     public curveEnum wallglowLighting;
     [Space(3)]
+    public GameObject Robots;
+    public Material robotFaceMaterial;
+    private List<SkinnedMeshRenderer> robotFaces = new List<SkinnedMeshRenderer>();
+    [Space(3)]
     private List<int> nextLightPerLightIndex = new List<int>(); //keep in memory the next color chosen for each single light
 
     [Space(10)]
@@ -90,6 +94,13 @@ public class Lighting : MonoBehaviour
     // Instantiate all Arrays with their respective GameObject
     void Start()
     {
+        foreach (SkinnedMeshRenderer face in Robots.GetComponentsInChildren(typeof(SkinnedMeshRenderer)))
+        {
+            if (face.sharedMaterial == robotFaceMaterial)
+            {
+                robotFaces.Add(face);
+            }
+        }
 
         //this memory stuff is only run once, so YOLO
 
@@ -168,6 +179,7 @@ public class Lighting : MonoBehaviour
 
         // Run the Update Colours function every time the beat happens in seconds. 60/BPM = the amount of time in seconds a beat occurs.
 
+        
     }
 
     //Run perframe
@@ -225,6 +237,11 @@ public class Lighting : MonoBehaviour
             danceTileLightArray[0].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[1]], curves[(int)danceTileLighting]);
             danceTileLightArray[1].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[16]], curves[(int)danceTileLighting]);
             danceTileLightArray[2].color = Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[13]], curves[(int)danceTileLighting]);
+
+            for (int i = 0; i < robotFaces.Count; i++)
+            {
+                robotFaces[i].material.SetColor("_expressionColor", Color.Lerp(BaseColor, lightColours[nextLightPerLightIndex[i]], curves[3]));
+            }
 
             for (int i = 0; i < danceTileArray.Count; i++)
             {
