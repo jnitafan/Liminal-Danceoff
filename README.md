@@ -15,7 +15,7 @@ This experience is developed based on psychology research documents (Psych Docs)
 4. Liminal SDK
 * For more informations about liminal SDK, visit the page [Liminal-SDK-Unity-Package](https://github.com/LiminalVR/LiminalSdk-UnityPackage/blob/develop/README.md#setup-git)
 
-## Installation
+## Installation (For Deakin Students)
 After get all requirements ready, now you can clone install the project on your device.
 1. Install sourcetree and login to Deakin BitBucket server
 - Root URL: https://bitbucket-students.deakin.edu.au/
@@ -32,7 +32,7 @@ After get all requirements ready, now you can clone install the project on your 
 
 4. Open 'DanceitOff' scene in project file.
 
-* Installation video: [Here](https://youtu.be/j3MVVTp1MHQ)
+* Installation video: (For Deakin Students) [Here](https://youtu.be/j3MVVTp1MHQ)
 
 ## Project Settings
 - Android ready
