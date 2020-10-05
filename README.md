@@ -11,7 +11,7 @@ This experience is developed based on psychology research documents (Psych Docs)
 ## Requirements
 1. Unity game engine: version 2019.1.10f1
 2. Android Build Support platform module for Unity
-3. BitBucket & Sourcetree
+3. Git Client
 4. Liminal SDK
 * For more informations about liminal SDK, visit the page [Liminal-SDK-Unity-Package](https://github.com/LiminalVR/LiminalSdk-UnityPackage/blob/develop/README.md#setup-git)
 
@@ -48,7 +48,7 @@ After get all requirements ready, now you can clone install the project on your 
 
 3. Player Settings
 - Company name: Liminal VR
-- Product name: DanceitOffApp
+- Product name: (Anything but default)
 
 4. Build and Run
 - Note: it may take up to 25-30 minutes to build the project
