@@ -32,4 +32,4 @@ Material:
     - _randomExpression: 1
     - _randomExpressionSeed: 1
     m_Colors:
-    - _expressionColor: {r: 7.129739, g: 1.6775018, b: 0, a: 0}
+    - _expressionColor: {r: 7.129738, g: 0, b: 6.6077714, a: 0}
